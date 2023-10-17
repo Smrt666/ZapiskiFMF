@@ -7,6 +7,7 @@
 \usepackage{lmodern}
 
 \usepackage{mathtools}
+\usepackage{bbm}
 
 \usepackage{tikz}
 \usepackage{tkz-euclide}
@@ -86,7 +87,7 @@
         \end{tikzpicture}
     \end{figure*}
     Premik premice je izomorfizem, ki premico preslika v premico. Premico premaknemo tako, da se krožnice dotika v eni točki. Tej točki na premici recimo \(P_0\),
-    tej točki na krožnici pa \(K_0\). Izberemo poljubno točko \(P\) na premici. Narišemo tangenti na krožnico skozi to točko. Ena tangenta je premica sama, druga pa se dotika
+    tej točki na krožnici pa \(K_0\). Ti dve točki naj se slikata druga v drugo. Izberemo poljubno točko \(P\) na premici. Narišemo tangenti na krožnico skozi to točko. Ena tangenta je premica sama, druga pa se dotika
     krožnice v točki \(K\). Točka \(P\) naj se slika v točko \(K\). Izberimo poljubno točko \(K\) na krožnici. Narišemo tangento na krožnico skozi to točko. 
     Tangenta je lahko vzporedna premici, če je izbrana točka \(K_0\), ki jo že znamo slikati na premico, ali pa točka na nasprotni strani krožnice. Slednja točka
     naj se ne slika nikamor -- to naj bo točka, ki krožnici manjka. Za vse ostale točke \(K\), pa obstaja natanko ena točka \(P\), ki se po prej napisanem slika v \(K\).
@@ -107,6 +108,29 @@
             \(\left(g \circ f\right)(x) = g\left(f\left(\inj{2}(b)\right)\right) = g\left(\inj{1}(b)\right) = \inj{2}(b) = x\). Torej sta \(A + B\) in \(B + A\) izomorfni.
         \item \(A + (B + C) \cong (A + B) + C\) \\
             Naj bo \(f : A + (B + C) \rightarrow (A + B) + C, \inj{1}(a) \mapsto \inj{1}(\inj{1}(a)),\allowbreak \inj{2}(\inj{1}(b)) \mapsto \inj{1}(\inj{2}(b)),\allowbreak \inj{2}(\inj{2}(c)) \mapsto \inj{2}(c)\).
+            Naj bo \(g : (A + B) + C \rightarrow A + (B + C), \inj{1}(\inj{1}(a)) \mapsto \inj{1}(a),\allowbreak \inj{1}(\inj{2}(b)) \mapsto \inj{2}(\inj{1}(b)),\allowbreak \inj{2}(c) \mapsto \inj{2}(\inj{2}(c))\).
+
+            Izračunajmo kompozitum \(f \circ g\) za poljuben \(x \in (A + B) + C\): če je \(x = \inj{1}(\inj{1}(a)), a \in A\), potem je
+            \(\left(f \circ g\right)(x) = f(g(\inj{1}(\inj{1}(a)))) = f(\inj{1}(a)) = \inj{1}(\inj{1}(a)) = x\), če je \(x = \inj{1}(\inj{2}(b)), b \in B\), potem je
+            \(\left(f \circ g\right)(x) = f(g(\inj{1}(\inj{2}(b)))) = f(\inj{2}(\inj{1}(b))) = \inj{1}(\inj{2}(b)) = x\) in če je \(x = \inj{2}(c), c \in C\), potem je
+            \(\left(f \circ g\right)(x) = f(g(\inj{2}(c))) = f(\inj{2}(\inj{2}(c))) = \inj{2}(c) = x\).
+
+            Podobno velja tudi za \(g \circ f\). Torej sta \(A + (B + C)\) in \((A + B) + C\) izomorfni.
+        \item \(A \times \left(B + C\right) \cong A \times B + \cong A \times C\) \\
+            Naj bo \(f: A \times \left(B + C\right) \rightarrow A \times B + A \times C, \left(a, \inj{1}(b)\right) \mapsto \inj{1}\left(a, b\right),
+            \left(a, \inj{2}(c)\right) \mapsto \inj{2}\left(a, c\right)\). 
+            Naj bo \(g: A \times B + A \times C \rightarrow A \times \left(B + C\right), \inj{1}\left(a, b\right) \mapsto \left(a, \inj{1}(b)\right),
+            \inj{2}\left(a, c\right) \mapsto \left(a, \inj{2}(c)\right)\).
+
+            Izračunajmo kompozitum \(f \circ g\) za poljuben \(x \in A \times B + A \times C\): če je \(x = \inj{1}\left(a, b\right), a \in A, b \in B\), potem je
+            \(\left(f \circ g\right)(x) = f(g(\inj{1}\left(a, b\right))) = f\left(a, \inj{1}(b)\right) = \inj{1}\left(a, b\right) = x\) in če je \(x = \inj{2}\left(a, c\right), a \in A, c \in C\), potem je
+            \(\left(f \circ g\right)(x) = f(g(\inj{2}\left(a, c\right))) = f\left(a, \inj{2}(c)\right) = \inj{2}\left(a, c\right) = x\).
+            Podobno velja tudi za \(g \circ f\). Torej sta \(A \times \left(B + C\right)\) in \(A \times B + A \times C\) izomorfni.
+        \item \(A^\mathbbm{1} \cong A\) \\
+            Naj bo \(f : \mathbbm{1} \rightarrow A, \left(() \mapsto a\right) \mapsto a\). Naj bo \(g : A \rightarrow A ^{\mathbbm{1}}, a \mapsto \left(() \mapsto a\right)\).
+            Izračunajmo kompozitum \(f \circ g\) za poljuben \(x \in A\): \(\left(f \circ g\right)(x) = f(g(x)) = f\left(() \mapsto x\right) = x\).
+            Kompozitum \(g \circ f\) za \(\left(() \mapsto x\right) \in A ^ \mathbbm{1}, x \in A\) je \(g\left(f\left(() \mapsto x\right)\right) = g\left(x\right) = \left(() \mapsto x\right)\).
+            Torej sta \(f\) in \(g\) izomorfizma, \(A ^ \mathbbm{1}\) in \(A\) pa izomorfni. 
     \end{enumerate}
 
 \naloga
