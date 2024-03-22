@@ -1,0 +1,166 @@
+\documentclass[a4,11pt]{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel}
+\usepackage{thmtools}
+\usepackage{lmodern}
+\usepackage[colorlinks=false]{hyperref}
+\usepackage{textcomp}
+\usepackage{enumitem}
+
+\usepackage{floatrow}
+\usepackage{wrapfig}
+
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{framed}
+\usepackage{mathrsfs}
+
+\newcommand{\degree}{^\circ}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Lin}{Lin}
+
+\title{Rešitve 2.~kolokvija iz algebre 2016/2017}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{1.~naloga}
+    Dana je množica 
+    \[G = \left\{\left(a, b, c\right) \in \R; ac \ne 0\right\}\]
+    in pravilo 
+    \[
+        \left(a_1, b_1, c_1\right) \circ \left(a_2, b_2, c_2\right) = \left(a_1a_2, a_1b_2 + b_1c_2, c_1c_2\right).
+    \]
+    \begin{enumerate}[label=(\alph*)]
+        \item Pokaži, da je pravilo \(\circ\) operacija in da je \(G\) za to operacijo grupa.
+        \item Utemelji, da je podmnožica
+            \[
+                H = \left\{\left(a, b, c\right) \in G; a = c = 1\right\}
+            \]
+            podgrupa, ki je izomorfna grupi realnih števil za seštevanje.
+    \end{enumerate}
+
+\subsection*{Rešitev}
+\begin{enumerate}[label=(\alph*)]
+    \item Da je \(\circ\) operacija na \(G\) moramo preveriti, da je definirana za vse elemente iz \(G\)
+    in da je za to operacijo zaprta.  \(\left(a_1, b_1, c_1\right) \circ \left(a_2, b_2, c_2\right) = \left(a_1a_2, a_1b_2 + b_1c_2, c_1c_2\right)\).
+    Ker so \(a_1, a_2, b_1, b_2, c_1, c_2 \in \R\) je očitno, da je operacija definirana za vse elemente iz \(G\), vsi ti elementi imajo za člene
+    realna števila, zato moramo preveriti le še pogoj za neničelnost produkta prvega in zadnjega člena.
+    Vemo, da \(a_1c_1 \ne 0\) in \(a_2c_2 \ne 0\), torej so vsi \(a_1, a_2, c_1, c_2\) različni od \(0\). Posledično je tudi 
+    \(a_1a_2\ne 0\) in \(c_1c_2 \ne 0\), torej je operacija zaprta za vse elemente iz \(G\).
+
+    Preverimo asociativnost:
+    \begin{align*}    
+        & \left(\left(a_1, b_1, c_1\right) \circ \left(a_2, b_2, c_2\right)\right) \circ \left(a_3, b_3, c_3\right) =
+        \left(a_1a_2, a_1b_2 + b_1c_2, c_1c_2\right) \circ \left(a_3, b_3, c_3\right) \\
+        & = \left(a_1a_2a_3, a_1a_2b_3 + \left(a_1b_2 + b_1c_2\right)c_3, c_1c_2c_3\right) \\
+        & = \left(a_1a_2a_3, a_1\left(a_2b_3 + b_2c_3\right) + b_1c_2c_3, c_1c_2c_3\right) \\
+        & = \left(a_1, b_1, c_1\right) \circ \left(a_2a_3, a_2b_3 + b_2c_3, c_2c_3\right) \\
+        & = \left(a_1, b_1, c_1\right) \circ \left(\left(a_2, b_2, c_2\right) \circ \left(a_3, b_3, c_3\right)\right).
+    \end{align*}
+
+    Enota za to operacijo je \(\left(1, 0, 1\right)\), inverz pa je \(\left(a, b, c\right)^{-1} = \left(\frac{1}{a}, -\frac{b}{ac}, \frac{1}{c}\right)\):
+    \begin{align*}        
+        \left(1, 0, 1\right) \circ \left(a, b, c\right) & = \left(1a, 1b + 0c, 1c\right) = \left(a, b, c\right) \\
+        \left(a, b, c\right) \circ \left(1, 0, 1\right) & = \left(a1, a0 + b1, c1\right) = \left(a, b, c\right). \\
+        \left(a, b, c\right) \circ \left(\frac{1}{a}, -\frac{b}{ac}, \frac{1}{c}\right) & = \left(a\frac{1}{a}, a\left(-\frac{b}{ac}\right) + b\frac{1}{c}, c\frac{1}{c}\right) = \left(1, 0, 1\right) \\
+    \end{align*}
+    Ker \(a, c \ne 0\), je inverz definiran za vse elemente iz \(G\). Sledi da je \(G\) grupa za operacijo \(\circ\).
+
+    \item Elementi množice \(H\) so oblike \(\left(1, b, 1\right)\), kjer je \(b \in \R\).
+    Da je \(H\) podgrupa grupe \(G\) moramo preveriti, da je zaprta za kompozitum z inverzom.
+    Izberemo poljubna \(\left(1, x, 1\right), \left(1, y, 1\right) \in H\).
+    Inverz elementa \(\left(1, y, 1\right)\) je \(\left(1, -y, 1\right)\).
+    Izračunajmo \(\left(1, x, 1\right) \circ \left(1, -y, 1\right) = \left(1, -y + x, 1\right) \in H\).
+
+    Da je \(H\) izomorfna grupi realnih števil za seštevanje, definiramo preslikavo
+    \(\varphi: H \to \R; \varphi\left(1, b, 1\right) = b\).
+    Preverimo, da je \(\varphi\) homomorfizem:
+    \[
+        \varphi\left(\left(1, x, 1\right) \circ \left(1, y, 1\right)\right)
+        = \varphi\left(1, x + y, 1\right) = x + y 
+        = \varphi\left(1, x, 1\right) + \varphi\left(1, y, 1\right).
+    \]
+    Preveriti moramo še za inverz \(\varphi^{-1}\): \(\varphi^{-1}\left(x\right) = \left(1, x, 1\right)\)
+    \[
+        \varphi^{-1}\left(x + y\right) = \left(1, x + y, 1\right) 
+        = \left(1, x, 1\right) \circ \left(1, y, 1\right) 
+        = \varphi^{-1}\left(x\right) \circ \varphi^{-1}\left(y\right).
+    \]
+\end{enumerate}
+
+\section*{2.~naloga}
+    Naj bo \(S_n\) grupa permutacij elementov \(\{1, 2, \ldots, n\}\).
+    Naj bodo \(\left(ab\right)\), \(\left(bc\right)\) in \(\left(cd\right)\)
+    transpozicije v \(S_n\).
+    \begin{enumerate}[label=(\alph*)]
+        \item Če je \(a \ne c\), pokaži, da se da produkt \(\left(ab\right)\left(bc\right)\)
+        napisati kot cikel dolžine 3.
+        \item  Če so \(a\), \(b\), \(c\) in \(d\) različna števila, pokaži, da se da produkt
+        \(\left(ab\right)\left(cd\right)\) napisati kot produkt dveh ciklov dolžine 3.
+        \item Pokaži, da se vsaka soda permutacija napisati kot produkt ciklov dolžine 3.
+    \end{enumerate}
+
+\subsection*{Rešitev}
+\begin{enumerate}[label=(\alph*)]
+    \item Produkt \(\left(ab\right)\left(bc\right)\) je enak \(\left(abc\right)\).
+    \item Produkt \(\left(ab\right)\left(cd\right) = \left(dbc\right)\left(adb\right)\).
+    \item Naj bo \(\sigma \in S_n\) soda permutacija. Ker je \(\sigma\) soda, je enak produktu sodega števila
+    transpozicij. Okrog 1.~in 2.~transpozicije v produktu lahko napišemo oklepaje, 
+    potem okrog 3.~in 4.~transpozicije, itd. Ker je transpozicij sodo, bodo 
+    vse v parih. Če sta v paru dve transpoziciji, ki imata dva skupna elementa,
+    je njun produkt enak identiteti. Identiteto lahko zapišemo kot produkt ciklov dolžine 3:
+    \(\mathrm{id} = \left(1 2 3\right)\left(3 2 1\right)\). 
+    
+    Če imamo dve transpoziciji,
+    ki se ujemata v enem elementu, lahko njun produkt zapišemo kot produkt dveh ciklov dolžine 3
+    po pravilu iz točke (a). Pri tem se lahko zgodi, da cikla nista zapisana v obliki, 
+    kjer bi imela ujemajoči se element na notranji strani. V tem primeru lahko upoštevamo
+    \(\left(ab\right) = \left(ba\right)\) in prepišemo transpoziciji v želeno obliko.
+
+    Če imamo dve transpoziciji, ki nimata skupnih elementov, lahko njun produkt zapišemo kot produkt
+    dveh ciklov dolžine 3 po pravilu iz točke (b).
+
+    Sledi, da lahko produkt dveh transpozicij zapišemo kot produkt ciklov dolžine 3.
+    Torej lahko poljubno sodo permutacijo zapišemo kot produkt ciklov dolžine 3.
+\end{enumerate}
+
+\section*{3.~naloga}
+    Najprej določi realni števili \(\alpha\) in \(\beta\), tako da bosta množici
+    \[
+        U = \left\{p \in \R_3\left[x\right]; p\left(0\right) - \left(\alpha - 1\right)
+        p'\left(0\right) + \alpha = \beta\right\}
+    \]
+    \[
+        \text{in } V = \left\{p \in \R_3\left[x\right]; p\left(0\right) - p''\left(x\right)
+        = \beta + 1, p\left(-1\right) = 0\right\}
+    \]
+    vektorska podprostora prostora \(\R_3\left[x\right]\) realnih polinomov stopnje največ 3.
+    Nato določi kakšne baze prostorov \(U\), \(V\) in \(U \cap V\).
+
+\subsection*{Rešitev}
+    Naj bo \(p\left(x\right) = ax^3 + bx^2 + cx + d\).
+    Iz pogoja \(p\left(0\right) - \left(\alpha - 1\right)p'\left(0\right) + \alpha = \beta\) sledi:
+    \[
+        d + \left(\alpha - 1\right)c + \alpha = \beta
+    \]
+    Ker vsak podprostor vsebuje \(0\), mora veljati enačba veljati za \(a = b = c = d = 0\).
+    Dobimo \(\alpha = \beta\). Vstavimo nazaj v enačbo in dobimo \(d = \left(\alpha - 1\right)c\).
+    To so vsi pogoji za podprostor \(U\), saj z linearnimi kombinacijami teh polinomov dobimo
+    polinome, ki zadoščajo enačbi --- pri množenju s skalarjem se enačba pomnoži s skalarjem, 
+    pri seštevanju se pa dve ekvivalentni enačbi seštejeta.
+
+    Polinomi podprostora \(V\) so oblike 
+    \(p\left(x\right) = \left(x + 1\right)\left(ax^2 + bx + c\right)\).
+\end{document}
