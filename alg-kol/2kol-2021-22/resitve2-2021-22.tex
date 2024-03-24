@@ -1,0 +1,235 @@
+\documentclass[a4,11pt]{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel}
+\usepackage{thmtools}
+\usepackage{lmodern}
+\usepackage[colorlinks=false]{hyperref}
+\usepackage{textcomp}
+\usepackage{enumitem}
+
+\usepackage{floatrow}
+\usepackage{wrapfig}
+
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{framed}
+\usepackage{mathrsfs}
+
+\newcommand{\degree}{^\circ}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Lin}{Lin}
+
+\title{Rešitve 2.~kolokvija iz algebre 2021/2022}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{1.~naloga}
+    Na množici \(V = \left(0, \infty\right) \times \left(0, \infty\right)\) definiramo predpisa
+    \[\left(x, y\right) \oplus \left(u, v\right) = \left(xu, yv\right), \ \lambda\cdot \left(x, y\right) = \left(x^\lambda, y^\lambda\right) \ \text{ za } x, y, u, v \in \left(0, \infty\right) \text{ in } \lambda \in \R.\]
+    S tem postane množica \(\left(V, \oplus, \cdot\right)\) vektorski prostor nad \(\R\). Tega ni potrebno dokazovati.
+    \begin{enumerate}[label=(\alph*)]
+        \item Dokaži, da je \(\mathcal{B} = \{\left(e, 1\right), \left(1, e\right)\}\) baza vektorskega prostora \(V\).
+
+        Definirajmo
+        \[ \mathcal{A}\left(x, y\right) = \left(xy^2, \frac{x^2}{y} \right) \space \text{ za } \left(x, y\right) \in V.\]
+        \item Dokaži, da je \(\mathcal{A}: V \to V\) linearna preslikava.
+        \item Določi matriko linearne preslikave \(\mathcal{A}\) glede na bazo \(\mathcal{B}\)
+    \end{enumerate}
+
+\subsection*{Rešitev}
+    \begin{enumerate}[label=(\alph*)]
+        \item Naj bo \((x, y) \in V\) poljuben. Velja:
+        \[(x, y) = \left(e^{\ln{x}}, e^{\ln{y}}\right) = \left(e^{\ln{x}}, 1\right) \oplus \left(1, e^{\ln{y}}\right) = \ln{x} \cdot (e, 1) \oplus \ln{y} \cdot (1, e)\]
+        Pri tem sta \(x\) in \(y\) pozitivna, zato je logaritem definiran. Skalarja \(\ln x\) in \(\ln y\) sta iz polja \(\R\), torej je \(\mathcal{B}\) res baza prostora \(V\).
+        
+        \item Naj bosta \(\left(x, y\right), \left(u, v\right) \in V\) in \(\alpha, \beta \in \R\). 
+        \begin{multline*}
+            \mathcal{A}\left(\alpha \cdot \left(x, y\right) \oplus \beta \cdot \left(u, v\right)\right) =  
+            \mathcal{A}\left(x^\alpha u^\beta, y^\alpha v^\beta\right) = \left(x^\alpha u^\beta \cdot \left(y^\alpha v^\beta\right)^2, \frac{\left(x^\alpha u^\beta\right)^2}{y^\alpha v^\beta}\right) \\
+            = \left(x^\alpha y^{2\alpha}u^{\beta}v^{2\beta}, \frac{x^{2\alpha}u^{2\beta}}{y^\alpha v^\beta}\right)
+            = \alpha \cdot \left(xy^2, \frac{x^2}{y}\right) \oplus \beta \cdot \left(uv^2, \frac{u^2}{v}\right)
+            = \alpha \cdot \mathcal{A}\left(x, y\right) \oplus \beta \cdot \mathcal{A}\left(u, v\right).
+        \end{multline*}
+
+        \item Izračunajmo kam se slikajo bazni vektorji:
+        \[\mathcal{A}\left(e, 1\right) = \left(e, e^2\right) = \left(e, 1\right) \oplus 2 \cdot \left(1, e\right)\]
+        \[\mathcal{A}\left(1, e\right) = \left(e^2, \frac{1}{e}\right) = 2\cdot\left(e, 1\right) \oplus \left(-1\right)\cdot\left(1, e\right)\]
+        Matrika linearne preslikave \(\mathcal{A}\) glede na bazo \(\mathcal{B}\) je torej
+        \[A_{\mathcal{B},\mathcal{B}} = \begin{bmatrix}
+            1 & 2 \\
+            2 & -1
+        \end{bmatrix}.\]
+    \end{enumerate}
+
+\section*{2.~naloga}
+    Dana je preslikava \(\Phi: \R^{n \times n} \to \R^{n \times n}\) s predpisom
+    \[\Phi\left(A\right) = A + \lambda A ^ \top,\]
+    kjer je \(\lambda \in \R\) izbrani parameter. Določi jedro in sliko preslikave \(\Phi\) v odvisnosti od parametra \(\lambda\).
+
+\subsection*{Rešitev}
+    Da poiščemo jedro preslikave \(\Phi\), moramo rešiti enačbo
+    \[A + \lambda A ^ \top = 0.\]
+    To je ekvivalentno enačbi \(A = -\lambda A ^ \top\). Enačbo lahko transponiramo in dobimo 
+    \(A ^ \top = -\lambda A\). Vstavimo v prejšnjo enačbo in dobimo  \(A = \lambda^2 A\). Če je \(A \ne 0\), potem vsebuje vsaj en neničeln element \(a_{ij}\).
+    Za ta element mora veljati \(a_{ij} = \lambda^2 a_{ij}\), kar je možno le, če je \(\lambda = \pm 1\).
+    Če \(\lambda \ne \pm 1\), potem je jedro preslikave \(\Phi\) enako \(\{0\}\), slika pa je enaka celotnemu
+    prostoru \(\R^{n \times n}\) (to sledi iz dimenzijske enačbe).
+    
+    Če je \(\lambda = 1\), potem je jedro enako množici matrik, ki zadoščajo enačbi:
+    \[A = - A^\top.\]
+    Torej so jedro vse matrike \(A = \left[a_{ij}\right]\), kjer velja \(a_{ij} = -a_{ji}\) za vse \(i, j\).
+    Po diagonali so torej ničle, elementi pod diagonalo pa nasprotno enaki elementom nad diagonalo.
+    Slika preslikave \(\Phi\) je enaka množici simetričnih matrik. \(\im \Phi\) je podmnožica simetričnih matrik:
+    \[\Phi\left(A\right) = A + A^\top = \left[a_{ij} + a_{ji}\right] = \left[a_{ji} + a_{ij}\right] = \left(\Phi\left(A\right)\right)^\top.\]
+    Poleg tega je tudi vsaka simetrična matrika v sliki, saj za vsako simetrično matriko \(A\) lahko vzamemo
+    matriko z njenimi elementi, ki so nad diagonalo, polovično vrednost elementov na diagonali, ostale pa postavimo na \(0\). Ta matrika
+    se slika v \(A\), saj je \(\Phi\left(B\right) = \left[b_{ij} + b_{ji}\right] = A\). 
+    Diagonalni elementi se seštejejo 
+    \(b_{ii} + b_{ii} = \frac{1}{2}a_{ii} + \frac{1}{2}a_{ii} = a_{ii}\). Ostali pa se
+    seštejejo \(b_{ij} + b_{ji} = a_{ij} = a_{ji}\), saj za \(i > j\) velja 
+    \(b_{ij} = 0\) in \(b_{ji} = a_{ji}\).
+
+    Za \(\lambda = -1\) je jedro enako množici simetričnih matrik, slika pa 
+    množici matrik \(\left[a_{ij}\right]\), da velja \(a_{ij} = - a_{ji}\) za vse \(i, j\).
+    Torej ničle so na diagonali, elementi pod diagonalo pa so nasprotno enaki elementom nad diagonalo.
+    Izračun slike in jedra za \(\lambda = -1\) je podoben kot za \(\lambda = 1\).
+
+\section*{3.~naloga}
+    Podana sta podprostora \(U,V \le \R^5\), kjer je 
+    {\small\[
+        U = \left\{\left(c_3 + c_4, -c_2, c_4, c_1 - c_2, c_0 + c_1 + c_3 + c_4\right) | \ 
+        p\left(x\right) = c_4 x^4 + c_3 x^3 + c_2 x^2 + c_1 x + c_0, p\left(0\right) = p'\left(0\right) = p\left(1\right) = 0\right\}
+    \]}
+    in 
+    \[
+        V = \Lin\left\{\left(-1, 1, 0, 1, 1\right), \left(-2, 2, 1, 2, 2\right), \left(-1, 1, 1, 1, 1\right)\right\}.
+    \]
+    Določi dimenzije in baze prostorov \(U\), \(V\), \(U + V\) in \(U \cap V\).
+
+\subsection*{Rešitev}
+    Najprej iz pogojev ugotovimo naslednje: \begin{enumerate}
+        \item \(p\left(0\right) = 0\) pomeni, da je konstantni člen \(c_0 = 0\).
+        \item \(p'\left(0\right) = 0\) pomeni, da je koeficient pri \(x\) enak \(c_1 = 0\).
+        \item \(p\left(1\right) = 0\) pomeni, da je vsota koeficientov enaka \(0\), torej \(c_0 + c_1 + c_2 + c_3 + c_4 = 0\).
+        \item iz prejšnjih točk sledi, da je \(c_3 + c_4 = - c_2\).
+    \end{enumerate}
+    Torej je prostor \(U\) enak množici vektorjev oblike 
+    \(\left(- c_2, - c_2, c_4, - c_2, -c_2\right)\), kjer je \(c_2, c_4 \in \R\).
+    Potem je \(U = \Lin\left\{\left(-1, -1, 0, -1, -1\right), \left(0, 0, 1, 0, 0\right)\right\}\).
+    Ta dva vektorja sta linearno neodvisna, torej tvorita bazo prostora \(U\). Dimenzija prostora \(U\) je \(2\).
+
+    Da dobimo bazo prostora \(V\), moramo ugotoviti ali so podani vektorji linearno neodvisni.
+    \[
+        \begin{bmatrix}
+            -1 & 1 & 0 & 1 & 1 \\
+            -2 & 2 & 1 & 2 & 2 \\
+            -1 & 1 & 1 & 1 & 1
+        \end{bmatrix} \sim \begin{bmatrix}
+            1 & -1 & 0 & -1 & -1 \\
+            0 & 0 & 1 & 0 & 0 \\
+            0 & 0 & 1 & 0 & 0
+        \end{bmatrix} \sim \begin{bmatrix}
+            1 & -1 & 0 & -1 & -1 \\
+            0 & 0 & 1 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0
+        \end{bmatrix}
+    \]
+    Z odštevanjem 1.~vrstice od 2.~in 3.~ugotovimo, da je tretji vektor linearno odvisen od prvega in drugega.
+    Torej je baza prostora \(V\) enaka \(\left\{\left(-1, 1, 0, 1, 1\right), \left(-2, 2, 1, 2, 2\right)\right\}\),
+    dimenzija prostora \(V\) pa je \(2\).
+
+    Da dobimo bazo prostora \(U + V\) lahko v dobljeno matriko vstavimo vektorje iz baze prostora \(U\).
+    \[
+        \begin{bmatrix}
+            1 & -1 & 0 & -1 & -1 \\
+            0 & 0 & 1 & 0 & 0 \\
+            -1 & -1 & 0 & -1 & -1 \\
+            0 & 0 & 1 & 0 & 0
+        \end{bmatrix} \sim \begin{bmatrix}
+            1 & -1 & 0 & -1 & -1 \\
+            0 & 0 & 1 & 0 & 0 \\
+            0 & -2 & 0 & -2 & -2 \\
+            \ 
+        \end{bmatrix} \sim \begin{bmatrix}
+            1 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 & 0 \\
+            0 & 1 & 0 & 1 & 1 \\
+            \
+        \end{bmatrix}
+    \]
+    Če odštejemo 1.~vrstico od 3.~in 2.~vrstico od 4.~dobimo 3 linearno neodvisne vektorje, ki tvorijo bazo prostora \(U + V\).
+    Baza prostora \(U + V\) je torej enaka \(\left\{\left(1, 0, 0, 0, 0\right), \left(0, 0, 1, 0, 0\right), \left(0, 1, 0, 1, 1\right)\right\}\).
+    Dimenzija prostora \(U + V\) je \(3\).
+
+    Delo za računanje baze prostora \(U \cap V\) lahko olajšamo z uporabo dimenzijske enačbe.
+    \begin{align*}
+        \dim\left(U\right) + \dim\left(V\right) & = \dim\left(U + V\right) + \dim\left(U \cap V\right) \\
+        2 + 2 & = 3 + \dim\left(U \cap V\right) \\
+        \dim\left(U \cap V\right) & = 1
+    \end{align*}
+    Torej je dimenzija preseka prostorov \(U\) in \(V\) enaka \(1\). Baza tega prostora ima torej en element,
+    en tak element se je pojavil že v bazi za \(U\) in kasneje v matriki za računanje baze prostora \(V\),
+    zato je baza prostora \(U \cap V\) enaka \(\left\{(0, 0, 1, 0, 0)\right\}\).
+
+    Če tega ne opazimo zapišemo splošna vektorja v obeh podprostorih in ju izenačimo:
+    \[
+        \left(-a, a, b, a, a\right) = \left(-c, -c, d, -c, -c\right)
+    \]
+    Iz tega sledi, da je \(a = c\), \(a = -c\) in \(b = d\). \(a\) in \(c\) sta potem \(0\),
+    za \(b = d\) pa lahko vzamemo poljubno vrednost. Torej je baza preseka prostorov \(U\) in \(V\) enaka
+    \(\left\{(0, 0, 1, 0, 0)\right\}\).
+
+\section*{4.~naloga}
+    Dokaži, da je množica 
+    \[
+        M = \left\{\left(f_1, f_2, \ldots, f_n\right) | \ f_1, f_2, \ldots, f_n \in \left\{-1, 1\right\}\right\}
+    \]
+    ogrodje vektorskega prostora \(\R^n\).
+
+\subsection*{Rešitev}
+    Množica \(M\) ima \(2^n\) elementov in je podmnožica \(\R^n\), zato je dovolj poiskati
+    eno bazo za \(\R^n\), ki je podmnožica množice \(M\). Označimo z \(F_i = \left(1, 1, \ldots, 1, -1, 1, \ldots, 1\right)\)
+    vektor, ki ima na \(i\)-tem mestu vrednost \(-1\), drugje pa \(1\). Množica \(M\) vsebuje vse vektorje oblike \(F_i\) 
+    za \(i \in \left\{1, 2, \ldots, n\right\}\). Tudi \(\left(-1, -1, \ldots, -1\right) \in M\).
+    Zdaj lahko poiščemo bazo:
+    \[
+        \begin{bmatrix}
+            -1 & -1 & -1 & \cdots & -1 \\
+            -1 & 1 & 1 & \cdots & 1 \\
+            1 & -1 & 1 & \cdots & 1 \\
+            1 & 1 & -1 & \cdots & 1 \\
+            \vdots & \vdots & \vdots & \ddots & \vdots \\
+            1 & 1 & 1 & \cdots & -1
+        \end{bmatrix} \sim \begin{bmatrix}
+            -1 & -1 & -1 & \cdots & -1 \\
+            -2 & 0 & 0 & \cdots &  \\
+            0 & -2 & 0 & \cdots & 0 \\
+            0 & 0 & -2 & \cdots & 0 \\
+            \vdots & \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & 0 & \cdots & -2
+        \end{bmatrix} \sim \begin{bmatrix}
+            -1 & -1 & -1 & \cdots & -1 \\
+            1 & 0 & 0 & \cdots & 0 \\
+            0 & 1 & 0 & \cdots & 0 \\
+            0 & 0 & 1 & \cdots & 0 \\
+            \vdots & \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & 0 & \cdots & 1
+        \end{bmatrix}
+    \]
+    Če prvo vrstico odštejemo od vseh ostalih, potem pa jih delimo z \(-2\), 
+    dobimo vektor \(\left(-1, -1, \ldots, -1\right)\) in standardne bazne vektorje za \(\R^n\).
+    Prva vrstica je linearna kombinacija ostalih, če jo odstranimo, dobimo dobro poznano bazo za \(\R^n\).
+    Torej \(\Lin M\) vsebuje standardno bazo za \(\R^n\), torej je \(M\) ogrodje za \(\R^n\).
+\end{document}
