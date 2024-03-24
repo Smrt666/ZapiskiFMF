@@ -15,16 +15,93 @@
 \author{Matija Derganc}
 
 \begin{document}
-1. Naj bosta $a$ in $b$ 1. Naj bosta a in b (ne nujno različni) realni števili. Izračunaj naslednjo tripasovno
+\section*{1.~naloga} Naj bosta $a$ in $b$ (ne nujno različni) realni števili. Izračunaj naslednjo tripasovno
 determinanto velikosti $n \times n$:
 $$
 \begin{vmatrix}
     a+b & ab & & & \\
     1 & a+b & ab \\
-      & \dots & \dots
+      & \dots & \dots & \dots \\
+     &  &  & 1 & a+b & ab \\
+     & & & & 1 & a+b
 \end{vmatrix}	$$
-     
+\subsection*{Rešitev}
+Determinanto razvijemo po prvem stolpcu: 
 
+\begin{align*}
+(a+b)\begin{vmatrix}
+    a+b & ab & & & \\
+    1 & a+b & ab \\
+      & \dots & \dots & \dots \\
+     &  &  & 1 & a+b & ab \\
+     & & & & 1 & a+b
+\end{vmatrix} -1
+\begin{vmatrix}
+    ab & 0 & & & \\
+    1 & a+b & ab \\
+      & 1 & a+b & ab \\
+      & \dots & \dots & \dots \\
+     &  &  & 1 & a+b & ab \\
+     & & & & 1 & a+b
+\end{vmatrix}
+\end{align*}
+Vidimo, da je leva determinanta enaka začetni, le za eno vrstico in stolpec manjša. Poimenujemo začetno determinanto
+$D_n$ in levo $D_{n-1}$, desno stran pa razvijemo po prvi vrstici.
+\begin{align*} (a+b)D_{n-1}-ab \begin{vmatrix}
+    a+b & ab & & & \\
+    1 & a+b & ab \\
+      & \dots & \dots & \dots \\
+     &  &  & 1 & a+b & ab \\
+     & & & & 1 & a+b
+\end{vmatrix} 
+\end{align*}   
+Dobljeni izraz  na desni pa je enak $D_{n-1}$. Imamo torej rekurzivno enačbo $D_n = (a+b)D_{n-1} - ab D_{n-2}$  \\
+Nadaljujemo s postopkom reševanja rekurzivnih formul, tako da vstavimo namesto $D_n$ parameter $\lambda^n$
+in obe strani deljimo z $\lambda^{n-2}$
+Dobimo enačbo:
+\begin{align*}
+    \lambda^2 = (a+b)\lambda - ab \\
+    \lambda^2 - (a+b)\lambda + ab = 0
+\end{align*} 
+Uporabimo formulo za ničle kvadratne funkcije:
+\begin{align*}
+    \lambda = \frac{a+b \pm \sqrt{(a+b)^2-4ab}}{2} \\
+    \lambda = \frac{a+b \pm \sqrt{a^2-2ab+b^2}}{2} \\
+    \lambda = \frac{a+b \pm \sqrt{(a-b)^2}}{2} \\
+    \lambda_1 = \frac{a+b + a-b}{2} = a \\
+    \lambda_1 = \frac{a+b -a+b}{2} = b 
+\end{align*}
+$\sqrt{(a-b)^2}$ smo lahko nadomestili z $\pm (a-b)$, ker se $\pm$ pojavi že pred korenom in je rezultat enak, ne glede na to ali je $a-b$ pozitivno ali negativno število.
+Ker imamo dve rešitvi, je torej iskana determinanta linearna kombinacija potenc rešitev: $D_n = x a^n + yb^n$ \\
+Neznana skalarja $x$ in $y$ poiščemo spomočjo enačb: \\ $D_1 = a+b, D_2 = (a+b)^2 -ab = a^2 +ab +b^2$
+\\ 
+\begin{align*}
+    a+b = D_1 = xa + yb \\
+    x = \frac{a+b-yb}{a}
+\end{align*}
+Vstavimo x v drugo enacbo :
+\begin{align*}
+    a^2 + ab + b^2 =D_2 = xa^2+yb^2 = \frac{a+b-yb}{a}a^2 + yb^2 = \\
+    a(a+b-yb)+yb^2 = a^2 + ab -yab +yb^2 = a^2 + ab + yb(b-a)
+\end{align*}
+Odštejemo $a^2, ab$:
+\begin{align*}
+    b^2 = yb(b-a)\\
+    b = y(b-a) \\
+    y = \frac{b}{b-a}
+\end{align*}
+Ker smo obe strani delili z $b$, obravnavamo še primer, kjer je $b=0$. V tem primeru je matrika diagonalna in je njena determinanta enaka $a^n$
+Nato izrazimo še $x$:
+\begin{align*}
+    x = \frac{a+b-yb}{a} = \frac{a+b-\frac{b}{b-a}b}{a} = \frac{\frac{(a+b)(b-a)-b^2}{b-a}}{a} = 
+    \frac{\frac{-a^2}{b-a}}{a} = \frac{a}{a-b}
+\end{align*}
+Podobno obravnavamo primer, ko je $a = 0$, kjer je determinanta $b^n$.
+
+Rešitev je torej: 
+\begin{center}
+    \large{$ \frac{a}{a-b} a^n+ \frac{b}{b-a} b^n$ }
+\end{center}
 \pagebreak
 
 
