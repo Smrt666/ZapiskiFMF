@@ -1,0 +1,124 @@
+\documentclass[a4,11pt]{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel}
+\usepackage{lmodern}
+\usepackage[colorlinks=false]{hyperref}
+\usepackage{textcomp}
+\usepackage{enumitem}
+
+\usepackage{mathrsfs}
+
+\usepackage{siunitx}
+
+
+\title{Rešitve 1.~kolokvija iz fizike 2017/2018}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Naloga}
+    Voziček z maso \(m_v = \qty{100}{\kg}\) se giblje s hitrostjo \(v_v = \qty{1}{\m\per\s}\) po vodoravnem tiru. Človek z maso \(m_c = \qty{50}{\kg}\)
+    priteče pod kotom \(\varphi = \ang{60}\) proti tiru in skoči na voziček. Po doskoku voziček, ki ostane na tiru,
+    in človek na njem obmirujeta. S kolikšno hitrostjo je tekel človek?
+
+\subsection*{Rešitev}
+    Pogledamo gibalne količine v smeri tira.
+    V smeri tira deluje sila le med človekom in vozičkom. Če vzamemo za sistem človeka in voziček, se sunka sil odštejeta
+    in gibalna količina sistema se ohranja. Telesi obmirujeta (\(G = 0\)). Torej velja:
+    \[m_v v_v - m_c v_c \cos\varphi = 0.\]
+    Iz tega izraza izrazimo hitrost človeka:
+    \[v_c = \frac{m_v v_v}{m_c \cos\varphi} = \qty{4}{\m\per\s}.\]
+
+\section{Naloga}
+    Klado z maso \(m = \qty{1}{\kg}\) potiskamo po klancu navzdol s silo \(F = \qty{5}{\N}\). Kolikšen naj bo kot \(\alpha\) med smerjo
+    sile in klancem, da bo klada drsela navzdol z maksimalnim pospeškom? Koeficient trenja
+    med klado in podlago je \(k = 0.2\), naklon klanca pa \(\varphi = \ang{30}\).
+
+\subsection*{Rešitev}
+    Najprej izračunamo silo trenja:
+    \[F_t = k F_{\text{pravokotna na klanec}} = k \left(m g \cos\varphi - F \sin \alpha\right).\]
+    Vsota sil na klado v smeri klanca je:
+    \[ma = F_g \sin\varphi + F \cos\alpha - F_t = mg\sin\varphi + F\cos\alpha - k \left(m g \cos\varphi - F \sin \alpha\right)\]
+    Pospešek ima maksimum, ko je odvod po kotu \(\alpha\) enak nič:
+    \begin{align*}
+        \frac{d}{d\alpha} \left(mg\sin\varphi + F\cos\alpha - k \left(m g \cos\varphi - F \sin \alpha\right)\right) &= 0, \\
+        -F\sin\alpha + kF\cos\alpha &= 0, \\
+        \tan\alpha &= k.
+    \end{align*}
+    Lahko preverimo, da je to res maksimum, tako da izračunamo drugi odvod \(0 < \alpha < \frac{\pi}{2}\):
+    \[\frac{d^2}{d\alpha^2} a = -F\cos\alpha - kF\sin\alpha < 0.\]
+    Torej je pospešek maksimalen, ko je kot med smerjo sile in klanca enak kotu trenja:
+    \[\alpha = \arctan k = \ang{11.31}.\]
+
+\section{Naloga}
+    Okrogla plošča, ki na začetku miruje, se zavrti s kotnim pospeškom \(\alpha\left(t\right) = \alpha_0 \exp{\left(-\frac{t}{t_0}\right)}\),
+    kjer sta \(\alpha_0 = \qty{1}{\per\s\squared}\)
+    in \(t_0 = \qty{5}{\s}\), okoli osi, ki gre skozi središče plošče in je nanjo pravokotna.
+    Kolikšna je kotna hitrost plošče po dolgem času? Ob katerem času bo pospešek točke na
+    obodu plošče kazal pod kotom \ang{45} glede na zveznico med točko in središčem plošče?
+
+\subsection*{Rešitev}
+    Kotna hitrost plošče je:
+    \begin{align*}
+        d\omega &= \alpha\left(t\right) dt = \alpha_0 e^{-\frac{t}{t_0}} dt \\
+        \int_0^\omega d\omega &= \alpha_0 \int_0^t e^{-\frac{t}{t_0}} dt \\
+        \omega &= \alpha_0 t_0 - \alpha_0 t_0e^{-\frac{t}{t_0}}
+    \end{align*}
+    Za dolg čas \(t \to \infty\) je kotna hitrost:
+    \[\omega = \alpha_0 t_0 = \qty{5}{\per\s}.\]
+
+    Pospešek točke na obodu plošče bo kazal pod kotom \ang{45} ko bosta tangencialni in radialni komponenti pospeška enaki:
+    \begin{align*}
+        a_c &= a_t \\
+        \omega^2 r &= \alpha r \\
+        {\left(\alpha_0 t_0 - \alpha_0 t_0e^{-\frac{t}{t_0}}\right)}^2 &= \alpha_0 e^{-\frac{t}{t_0}} \\
+        \alpha_0^2 t_0^2 - 2\alpha_0^2 t_0^2 e^{-\frac{t}{t_0}} + \alpha_0^2 t_0^2 e^{-\frac{2t}{t_0}} &= \alpha_0 e^{-\frac{t}{t_0}} \\
+        e^{-\frac{t}{t_0}} &= \frac{-2\alpha_0^2t_0^2 - \alpha_0 \pm \sqrt{{\left(2\alpha_0^2t_0^2 + \alpha_0\right)}^2 - 4\alpha_0^4t_0^4}}{-2\alpha_0^2t_0^2} \\
+    \end{align*}
+    \[
+        e^{-\frac{t}{t_0}} = 1 + \frac{1 \mp \sqrt{4\alpha_0t_0^2 + 1}}{2\alpha_0t_0^2}
+    \]
+    Zanima nas rešitev za \(t > 0\), torej \(e^{-\frac{t}{t_0}} < 1\). To zagotovo ne velja za rešitev s plusom pred korenom, zato vzamemo minus:
+    \[
+        t = - t_0 \ln\left(1 + \frac{1 - \sqrt{4\alpha_0t_0^2 + 1}}{2\alpha_0t_0^2}\right) = \qty{1}{\s}.
+    \]
+
+\section{Naloga}
+    Raketo izstrelimo s površja Zemlje v smeri navpično navzgor. Ob vžigu motorjev je skupna
+    masa rakete in goriva \(m_0\), masa goriva pa \(m_G\). Hitrost izpušnih plinov glede na raketo je \(v_i\),
+    masni pretok goriva v motorje pa \(\phi_m\). Po kolikšnem času po vžigu motorjev se raketa odlepi
+    od tal? Kolikšna je hitrost rakete v trenutku, ko zmanjka goriva? Spreminjanje težnega
+    pospeška z višino nad površjem Zemlje zanemari.
+
+\subsection*{Rešitev}
+    Silo motorja na raketo zapišemo kot:
+    \[F_m = \phi_m v_i.\]
+    Masa rakete se zmanjšuje s hitrostjo \(\phi_m\), torej \(m = m_0 - \phi_m t\).
+    Ko se raketa odlepi od tal, je sila motorja enaka gravitacijski sili:
+    \begin{align*}
+        F_m &= m g, \\
+        \phi_m v_i &= \left(m_0 - \phi_m t_0\right) g, \\
+        t_0 &= \frac{m_0 g - v_i\phi_m}{\phi_m g}.
+    \end{align*}
+    Če je sila motorja že od začetka večja od gravitacijske sile, bi dobili \(t_0 < 0\), v tem primeru za čas vzamemo \(t_0 = 0\).
+    Če je \(\phi v_i \le \left(m_0 - m_G\right) g\), se raketa ne odlepi od tal.
+
+    Izračunamo pospešek rakete in iz tega izpeljemo hitrost:
+    \begin{align*}
+        a &= \frac{F_m - F_g}{m} = \frac{\phi_m v_i}{m_0 - \phi_m t} - g \\
+        dv &= \left(\frac{\phi_m v_i}{m_0 - \phi_m t} - g\right) dt \\
+        \int_0^v dv &= \int_{t_0}^{t_G} \left(\frac{\phi_m v_i}{m_0 - \phi_m t} - g\right) dt \\
+        v &= -v_i \ln\left(\frac{m_0 - \phi_m t_0}{m_0 - \phi_m t_G}\right) + g\left(t_0 - t_G\right) \\
+    \end{align*}
+    Izračunati je treba še \(t_G\), čas, ko zmanjka goriva:
+    \(\phi_m t_G = m_G\) oz.~\(t_G = \frac{m_G}{\phi_m}\).
+    Ko zmanjka goriva, je hitrost rakete:
+    \[v = -v_i \ln\left(\frac{m_0 - \phi_m t_0}{m_0 - m_G}\right) + g\left(t_0 - \frac{m_G}{\phi_m}\right).\]
+
+\end{document}
