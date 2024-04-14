@@ -1,0 +1,177 @@
+\documentclass[a4,11pt]{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel}
+\usepackage{lmodern}
+\usepackage[colorlinks=false]{hyperref}
+\usepackage{textcomp}
+\usepackage{enumitem}
+
+\usepackage{mathrsfs}
+
+\usepackage{siunitx}
+
+
+\title{Rešitve 1.~kolokvija iz fizike 2021/2022}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Naloga}
+    Ko ventilator, ki se vrti s frekvenco \qty{10}{\Hz}, izklopimo, se začne vrteti enakomerno pojemajoče.
+    Za prvi vrtljaj po izklopu ventilator porabi \qty{0.2}{\s}. Izračunaj kotni pojemek. Po koliko vrtljajih
+    se ventilator ustavi?
+
+\subsection*{Rešitev}
+    Za enakomerno pospešeno kroženje velja enačba:
+    \[\varphi = \omega_0 t + \frac{\alpha t^2}{2},\]
+    kjer je \(\omega_0\) začetna kotna hitrost, \(\alpha\) kotni pospešek, \(t\) čas in \(\varphi\) opravljen kot.
+    Iz enačbe lahko izrazimo kotni pospešek (en obrat ustreza kotu \(2\pi\)):
+    \[\alpha = \frac{2\left(\varphi - \omega_0 t\right)}{t^2} = \frac{2\left(\varphi - 2\pi\nu_0 t\right)}{t^2} = \qty{-314}{\per\second\squared}.\]
+    Kotni pojemek je nasprotno enak pospešku, torej \(\alpha_{pojemek} = \qty{314}{\per\second\squared}\).
+
+    Za enakomerno pospešeno kroženje velja tudi enačba:
+    \[\omega^2 = \omega_0^2 + 2\alpha \varphi.\]
+    Za ustavitev ventilatorja mora veljati \(\omega = 0\). Število obratov je \(N = \frac{\varphi}{2\pi}\). Dobimo:
+    \[N = -\frac{\omega_0^2}{4\pi\alpha} = 1.\]
+
+\section{Naloga}
+    Smučarski skakalec se z roba odskočne mize odrine s hitrostjo \(v_0 = \qty{100}{\kilo\metre\per\hour} = \qty{27.77}{\metre\per\second}\) poševno navzgor
+    pod kotom \(\alpha = \ang{10}\) glede na vodoravnico. Odskočna miza brez skoka preide v doskočišče, ki je
+    raven klanec z naklonom \(\beta = \ang{40}\). Koliko časa traja let skakalca? Izračunaj dolžino njegovega
+    skoka. Le-ta se meri od roba odskočne mize vzdolž doskočišča. Zračni upor zanemari.
+
+\subsection*{Rešitev}
+    Skakalec se giblje po paraboli, navpična komponenta gibanja je enakomerno pospešeno, vodoravna pa je enakomerno gibanje.
+    Koordinatni sistem postavimo tako, da je izhodišče v začetni točki skoka. Enačbi gibanja sta:
+    \begin{align*}
+        y &= v_{0y} t - \frac{g}{2}t^2, \\
+        x &= v_{0x} t.
+    \end{align*}
+    Kjer sta \(v_{0y} = v_0 \sin\alpha\) in \(v_{0x} = v_0 \cos\alpha\).
+    Klanec lahko opišemo z enačbo \(y = -\tan\beta x\). Iščemo presečišče parabole leta in klanca. Vstavimo enačbi za gibanje v enačbo za klanec:
+    \[v_{0y} t - \frac{g}{2}t^2 = -\tan\beta v_{0x} t.\]
+    Iz enačbe izrazimo čas leta:
+    \[t = \frac{2v_0\left(\sin\alpha + \cos\alpha\tan\beta\right)}{g} = \qty{5.66}{\s}.\]
+
+    Dolžino skoka izračunamo iz enačbe za vodoravno gibanje in prejšnjega rezultata:
+    \[d = \frac{x}{\cos\beta} = \frac{v_0\cos\alpha t}{\cos\beta} = \qty{202}{\metre}.\]
+
+\section{Naloga}
+    Z vrha klanca spustimo klado. Ta se na tretjini dolžine klanca zaleti v enako, mirujočo klado
+    in se z njo sprime. Sprimek se nato na dveh tretjinah dolžine klanca zaleti v tretjo mirujočo
+    klado, enako prvima dvema, in se z njo spet sprime. Kolik²no je razmerje hitrosti sprimka
+    vseh treh klad na dnu klanca in hitrosti, ki bi jo tam imela prva klada, ki bi po enakem
+    klancu drsela brez trkov? Trenje zanemari.
+
+\subsection*{Rešitev}
+    Označimo maso posamezne klade z \(m\) in višino klanca z \(h\). Poglejmo, kaj se zgodi ob prvem trku.
+    Tik pred trkom velja:
+    \begin{align*}
+        v_1 &= \sqrt{2g\frac{h}{3}} \ \text{ hitrost klade ko se spusti za tretjino klanca} \\
+        G_1 &= m v_1 \ \text{ gibalna količina klade ko se spusti za tretjino klanca} \\
+    \end{align*}
+    Pri trku se ohrani gibalna količina in velja:
+    \begin{align*}
+        G_1' &= G_1 = 2m v_2 \ \text{ gibalna količina sprimka po prvem trku} \\
+        v_1' &= \frac{v_1}{2} = \sqrt{\frac{gh}{6}}\ \text{ hitrost sprimka po prvem trku} \\
+        W_{k1}' &= \frac{2m v_1'^2}{2} = \frac{m g h}{6}\ \text{ kinetična energija sprimka po prvem trku} \\
+    \end{align*}
+    Tik pred drugim trkom velja:
+    \begin{align*}
+        W_{k2} &= W_{k1}' + 2m g \frac{h}{3} \ \text{ kinetična energija sprimka pred drugim trkom} \\
+        \frac{2mv_2^2}{2} &= \frac{1}{6}mgh + \frac{2}{3}mgh = \frac{5}{6}mgh \\
+        v_2 &= \sqrt{\frac{5}{6}gh} \ \text{ hitrost sprimka ko se spusti za dve tretjini klanca} \\
+        G_2 &= 2m v_2 \ \text{ gibalna količina sprimka ko se spusti za dve tretjini klanca} \\
+    \end{align*}
+    Pri trku se spet ohrani gibalna količina in velja (zdaj je sprimek iz 3 teles):
+    \begin{align*}
+        G_2' &= G_2 = 3m v_2' \ \text{ gibalna količina sprimka po drugem trku} \\
+        2m \sqrt{\frac{5}{6}gh} &= 3m v_2' \\
+        v_2' &= \sqrt{\frac{10}{27}gh} \ \text{ hitrost sprimka po drugem trku} \\
+        W_{k2}' &= \frac{3m v_2'^2}{2} = \frac{5}{9}mgh \ \text{ kinetična energija sprimka po drugem trku} \\
+    \end{align*}
+    Sprimek samo še zdrsi po zadnji tretjini klanca:
+    \begin{align*}
+        W_{k3} &= W_{k2}' + 3m g \frac{h}{3} = \frac{5}{9}mgh + mgh = \frac{14}{9}mgh\\
+        \frac{3mv_3^2}{2} &= \frac{14}{9}mgh \\
+        v_3 &= \sqrt{\frac{28}{27}gh} \ \text{ hitrost sprimka na dnu klanca} \\
+    \end{align*}
+
+    Hitrost ene klade, ki bi drsela po klanca brez trkov, je:
+    \[u = \sqrt{2gh}.\]
+    Razmerje hitrosti sprimka in hitrosti ene klade je:
+    \[\frac{v_3}{u} = \sqrt{\frac{\frac{28}{27}gh}{2gh}} = \sqrt{\frac{14}{27}}.\]
+
+\section{Naloga}
+    Raketa z maso \(m_0 = \qty{100}{\tonne}\) in prečnim presekom \(S = \qty{10}{\metre\squared}\), ki po breztežnem prostoru potuje s
+    hitrostjo \(v_0 = \qty{1}{\kilo\metre\per\second}\), zaide v mirujoč oblak prahu z gostoto \(\rho = \qty{0.1}{\kg\per\metre\cubed}\). Prah se na raketo lepi
+    tako, da se pri tem njen prečni presek ne povečuje. Koliko časa po tem, ko je raketa vstopila v
+    oblak prahu, se njena hitrost zmanjša na polovico začetne? Kolikšen je takrat njen pospešek?
+
+\subsection*{Rešitev --- lažja verzija}
+    Ker oblak miruje, lahko gibalno količino opišemo na enak način ne glede na to, kolikšen del oblaka vzamemo za sistem.
+    Gibalna količina se ohranja, če za sistem vzamemo ves prah (lahko tudi mirujočega zraven), ki se je na raketo nalepil.
+    \[m_0 v_0 = m v\]
+
+    Z \(dm\) označimo maso prahu, ki se je nalepil na raketo v času \(dt\).
+    \[dm = \rho S v dt\]
+    Uporabimo prejšnjo enačbo:
+    \begin{align*}
+        dm &= \rho S \frac{m_0 v_0}{m} dt \\
+        m dm &= \rho S m_0 v_0 dt \\
+        \int_{m_0}^{m} m dm &= \int_{0}^{t} \rho S m_0 v_0 dt \\
+        \frac{m^2 - m_0^2}{2} &= \rho S m_0 v_0 t \\
+        \frac{{\left(\frac{m_0 v_0}{v}\right)}^2 - m_0^2}{2} &= \rho S m_0 v_0 t \\
+    \end{align*}
+    Za hitrost \(v = \frac{v_0}{2}\) dobimo:
+    \begin{align*}
+        \frac{{\left(\frac{m_0 v_0}{v_0/2}\right)}^2 - m_0^2}{2} &= \rho S m_0 v_0 t \\
+        \frac{4m_0^2 - m_0^2}{2} &= \rho S m_0 v_0 t \\
+        t &= \frac{3m_0}{2\rho S v_0} = \qty{150}{\s}
+    \end{align*}
+    Da izračunamo pospešek, izrazimo hitrost:
+    \begin{align*}
+        v &= \frac{m_0 v_0}{\sqrt{2\rho S m_0 v_0 t + m_0^2}} \\
+        a &= \frac{dv}{dt} = - m_0^2 v_0^2 \rho S {\left(2\rho S m_0 v_0 t + m_0^2\right)}^{-\frac{3}{2}} \\
+    \end{align*}
+    Za \(t = \qty{150}{\s}\) dobimo:
+    \[a = \qty{-1.25}{\metre\per\second\squared}.\]
+
+\subsection*{Rešitev --- težja verzija}
+    Ponavadi se take naloge rešuje z uporabo gibalne količine na nekoliko drugačen način.
+    Veljajo iste enačbe kot prej:
+    \begin{align*}
+        m_0 v_0 &= m v \\
+        dm &= \rho S v dt \\
+    \end{align*}
+    Naprej pa rešujemo nalogo s pomočjo gibalne količine:
+    \begin{align*}
+        0 = dG &= v dm + m dv \ \text{ (odvod produkta) } \\
+        v dm &= - m dv \\
+        v dm &= -m dv \\
+        v \rho S v dt &= -\frac{v_0 m_0}{v} dv \\
+        \frac{\rho S}{v_0 m_0} dt &= - \frac{1}{v^3} dv \\
+        \int_{0}^{t} \frac{\rho S}{v_0 m_0} dt &= - \int_{v_0}^{v} \frac{1}{v^3} dv \\
+        \frac{\rho S}{v_0 m_0} t &= \frac{1}{2v^2} - \frac{1}{2v_0^2} \\
+    \end{align*}
+    Za hitrost \(v = \frac{v_0}{2}\) dobimo:
+    \begin{align*}
+        \frac{\rho S}{v_0 m_0} t &= \frac{1}{2{\left(\frac{v_0}{2}\right)}^2} - \frac{1}{2v_0^2} \\
+        t &= \frac{3m_0}{2\rho S v_0} = \qty{150}{\s}
+    \end{align*}
+
+    Da izračunamo pospešek, izrazimo hitrost in dobimo isto kot prej:
+    \begin{align*}
+        v &= \frac{1}{\sqrt{\frac{2\rho S}{m_0 v_0}t + \frac{1}{v_0^2}}} = \frac{m_0 v_0}{\sqrt{2\rho S m_0 v_0 t + m_0^2}} \\
+        a &= \frac{dv}{dt} = - m_0^2 v_0^2 \rho S {\left(2\rho S m_0 v_0 t + m_0^2\right)}^{-\frac{3}{2}} = \qty{-1.25}{\metre\per\second\squared} \\
+    \end{align*}
+
+
+
+\end{document}
