@@ -1,0 +1,178 @@
+\documentclass[a4,11pt]{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel}
+\usepackage{thmtools}
+\usepackage{lmodern}
+\usepackage[colorlinks=false]{hyperref}
+\usepackage{textcomp}
+\usepackage{enumitem}
+
+\usepackage{floatrow}
+\usepackage{wrapfig}
+
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{setspace}
+\usepackage{mathrsfs}
+
+\newcommand{\degree}{^\circ}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Lin}{Lin}
+
+\title{Rešitve 4.~kolokvija iz algebre 2012/2013}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{1.~naloga}
+    Linearni preslikavi \(A: \mathbb{C}^5 \to \mathbb{C}^5\) v standardni bazi ustreza matrika
+    \[
+        \begin{bmatrix}
+            a & 0 & 0 & 0 & -b \\
+            0 & a & 0 & 0 & -b \\
+            0 & 0 & a & 0 & -b \\
+            0 & 0 & 0 & a & -b \\
+            b & b & b & b & a \\
+        \end{bmatrix}.
+    \]
+    \begin{enumerate}[label=(\alph*)]
+        \item Izračunaj njene lastne vrednosti.
+        \item Za katere pare \(a, b \in \mathbb{C}\) je \(A\) unitarna preslikava?
+    \end{enumerate}
+
+\subsection*{Rešitev}
+    Lahko izračunamo karakteristični polinom matrike \(A\):
+    \begin{align*}
+        & \det(A - \lambda I) = \begin{vmatrix}
+            a - \lambda & 0 & 0 & 0 & -b \\
+            0 & a - \lambda & 0 & 0 & -b \\
+            0 & 0 & a - \lambda & 0 & -b \\
+            0 & 0 & 0 & a - \lambda & -b \\
+            b & b & b & b & a - \lambda \\
+        \end{vmatrix} = \\
+        &= b {\left(a - \lambda\right)}^3 \left(-b\right) + \left(a - \lambda\right)\begin{vmatrix}
+            a - \lambda & 0 & 0 & -b \\
+            0 & a - \lambda & 0 & -b \\
+            0 & 0 & a - \lambda & -b \\
+            b & b & b & a - \lambda \\
+        \end{vmatrix} = \\
+        &= b {\left(a - \lambda\right)}^3 \left(-b\right) + \left(a - \lambda\right)\left(b{\left(a-\lambda\right)}^2\left(-b\right)
+        + \left(a-\lambda\right)\left(b\left(a-\lambda\right)\left(-b\right) + \left(a-\lambda\right)\left({\left(a\lambda\right)}^2 + b^2\right)\right)\right) = \\
+        &= -{\left(a - \lambda\right)}^3\left(b^2 + \left(b^2 + \left(b^2 + \left({\left(a - \lambda\right)}^2 + b^2\right)\right)\right)\right) = \\
+        &= {\left(\lambda - a\right)}^3\left(4b^2 + {\left(a - \lambda\right)}^2\right) = \\
+        &= {\left(\lambda - a\right)}^2\left(a - \lambda + 2bi\right)\left(a - \lambda - 2bi\right).
+    \end{align*}
+    Torej so lastne vrednosti matrike \(A\) enake \(a\) in \(\lambda = a \pm 2bi\).
+
+    Iščemo \(a\) in \(b\), da bo \(A\) unitarna. Torej mora \(A\) ohranjati dolžine vektorjev, torej ohranja tudi dolžine enotskih baznih vektorjev:
+    \[Ae_1 = \begin{bmatrix}
+        a \\ 0 \\ 0 \\ 0 \\ b
+    \end{bmatrix}, \dots, Ae_4 = \begin{bmatrix}
+        0 \\ 0 \\ 0 \\ a \\ b
+    \end{bmatrix}, Ae_5 = \begin{bmatrix}
+        -b \\ -b \\ -b \\ -b \\ a
+    \end{bmatrix}\]
+    Iz prve (in do četrte) enačbe sledi: \({|a|^2} + {|b|}^2 = 1\) in iz pete: \({|a|^2} + 4{|b|}^2 = 1\). Dobimo, da je
+    \(b = 0\) in \(|a| = 1\). Moramo še preveriti, da so ti pogoji zadostni (vemo da baznim vektorjem ohranja dolžino, ne pa vsem),
+    torej da velja \(A^H A = I\). Iz \(b = 0\) ugotovimo, da je \(A\) diagonalna matrika.
+    Potem mora veljati \(a \cdot \overline{a} = 1\), kar je enako pogoju \(|a| = 1\).
+
+\section*{2.~naloga}
+    Preslikava \(A\) je endomorfizem prostora \(\mathbb{C}^{10}\)
+    in ima lastne vrednosti enake \(0\), \(1\) in \(2\). Maksimalno število linearno neodvisnih lastnih vektorjev je
+    pet. Lastna vrednost \(1\) je ničla tretje stopnje minimalnega polinoma preslikave
+    \(A\) in ničla četrte stopnje karakterističnega polinoma preslikave \(A\).
+    Lastna vrednost \(2\) je ničla tretje stopnje v minimalnem in karakterističnem
+    polinomu preslikave \(A\).
+    Določi rang \(A\), minimalni in karakteristični polinom \(A\) in zapiši Jordanovo
+    formo preslikave \(A\).
+
+\subsection*{Rešitev}
+    5 neodvisnih lastnih vektorjev pomeni, da ima \(J(A)\) pet celic. Vemo še:
+    \[
+        \Delta_A(\lambda) = {\left(\lambda - 1\right)}^4{\left(\lambda - 2\right)}^3\lambda^3 \quad \text{in} \quad
+        m_A(\lambda) = {\left(\lambda - 1\right)}^3{\left(\lambda - 2\right)}^3\lambda^x
+    \]
+    Potence v karakterističnem polinomu za \(\lambda = 1\) in \(\lambda = 2\) nam povedo, da je rang \(A\) enak 7.
+    Potence v karakterističnem polinomu nam povejo skupno velikost celic v Jordanovi formi, potence v minimalnem polinomu pa
+    velikosti največjih celic. Za \(\lambda = 1\) je največja celica velikosti 3, torej ima še eno celico velikosti 1.
+    Za \(\lambda = 2\) je največja celica velikosti 3, torej je to edina celica. Za \(\lambda = 0\) ostaneta še dve celici,
+    skupaj sta veliki 3. Torej je ena velika \(x = 2\) in ena velika 1. 
+    \[
+        J(A) = \begin{bmatrix}
+            1 & 1 &   &   &   &   &   &   &   &   \\
+              & 1 & 1 &   &   &   &   &   &   &   \\
+              &   & 1 &   &   &   &   &   &   &   \\
+              &   &   & 1 &   &   &   &   &   &   \\
+              &   &   &   & 2 & 1 &   &   &   &   \\
+              &   &   &   &   & 2 & 1 &   &   &   \\
+              &   &   &   &   &   & 2 &   &   &   \\
+              &   &   &   &   &   &   & 0 & 1 &   \\
+              &   &   &   &   &   &   &   & 0 &   \\
+              &   &   &   &   &   &   &   &   & 0 \\
+        \end{bmatrix}.
+    \]
+
+\section*{3.~naloga}
+    Naj bo \(\langle \cdot \; , \cdot \rangle\) takšen skalarni produkt na \(R_4\left[x\right]\), da je množica \(\{1, x, x^2, x^3, x^4\}\) ortonormirana baza.
+    Določi kakšno ortogonalno bazo ortogonalnega komplementa prostora \(U\), če je
+    \[U = \left\{p \in \R_4\left[x\right]; \quad p(1) = 0, \quad p(x) = p(-x) \quad \forall x \in \R\right\}.\]
+
+\subsection*{Rešitev}
+    Vsak \(p \in U\) ima ničelne koeficiente pri lihih potencah:
+    \begin{align*}
+        p(x) &= p(-x) \\
+        \alpha x^4 + \beta x^3 + \gamma x^2 + \delta x + \varepsilon &= \alpha x^4 - \beta x^3 + \gamma x^2 - \delta x + \varepsilon \\
+        2\beta x^3 + 2\delta x &= 0 \\
+    \end{align*}
+    Kar mora veljati za vsak \(x\). Torej je \(\beta = \delta = 0\). Naj bo \(p(x) = a x^4 + b x^2 + c \in U\). Uporabimo
+    še pogoj \(p(1) = 0\) in dobimo \(a + b + c = 0\) in \(p(x) = a x^4 + b x^2 - a - b\).
+    Iščemo ortogonalni komplement za \(U\), torej rešujemo enačbo \(\langle p(x), q(x)\rangle = 0\), kjer je \(q(x) = \alpha x^4 - \beta x^3 + \gamma x^2 - \delta x + \varepsilon\)
+    in \(p\) je poljuben polinom iz \(U\). Dobimo:
+    \begin{align*}
+        \langle p(x), q(x)\rangle &= \langle a x^4 + b x^2 - a - b, \alpha x^4 - \beta x^3 + \gamma x^2 - \delta x + \varepsilon\rangle = \\
+        &= a\left(\alpha\langle x^4, x^4\rangle + \beta\langle x^4, x^3\rangle, \dots\right) + b\left(\alpha\langle x^2, x^4\rangle + \beta\langle x^2, x^3\rangle + \dots\right) + \dots = 0 \\
+        &= a\alpha + 0\beta + b\gamma + 0\delta + \left(-a-b\right)\varepsilon = \\
+        &= a\alpha + b\gamma - \left(a+b\right)\varepsilon = \\
+        &= a(\alpha - \varepsilon) + b(\gamma - \varepsilon) = 0 \\
+    \end{align*}
+    To mora veljati za vse \(a, b \in \R\), torej je \(\alpha = \gamma = \varepsilon\).
+    Torej je ortogonalni komplement \(U\) enak prostoru vseh polinomov oblike \(q(x) = \alpha x^4 + \beta x^3 + \alpha x^2 + \delta x + \alpha\).
+
+    Baza ortogonalnega komplementa je \(\{x, x^3, x^4 + x^2 + 1\}\). Ortonormiramo jo postopoma: prva dva elementa imata dolžino 1 in 
+    sta medsebojno pravokotna. Tretji element ima dolžino \(\sqrt{3}\), zato ga delimo s \(\sqrt{3}\). Na prejšnja dva je pa že pravokoten.
+    Dobljena baza je:
+    \[\{x, x^3, \frac{1}{\sqrt{3}}x^4 + \frac{1}{\sqrt{3}}x^2 + \frac{1}{\sqrt{3}}\}.\]
+
+\section*{4.~naloga}
+    Na bo \(V\) realen vektorski prostor in \(A: V \to V\) linearna preslikava.
+    \begin{enumerate}[label=(\alph*)]
+        \item Pokaži, da velja \(A^* = -A\) natanko takrat, kadar za vsak vektor \(x \in V\) velja \(\langle Ax, x\rangle = 0\).
+        \item Pokaži, da je tedaj preslikava \(A + I\) obrnljiva.
+    \end{enumerate}
+
+\subsection*{Rešitev}
+    Implikacija v desno:
+    \[\langle Ax, x\rangle = \langle x, A^*x\rangle = -\langle x, Ax\rangle = -\langle Ax, x\rangle\]
+    enakost \(\langle Ax, x\rangle = -\langle Ax, x\rangle\) pomeni \(\langle Ax, x\rangle = 0\).
+    Implikacija v levo:
+    \begin{multline*}
+        0 = \langle A(x + y), (x + y)\rangle = \langle Ax + Ay, x + y\rangle = \langle Ax, x\rangle + \langle Ax, y\rangle + \langle Ay, x\rangle + \langle Ay, y\rangle = \\
+        = \langle Ax, y\rangle + \langle Ay, x\rangle = \langle Ax, y\rangle + \langle x, Ay\rangle = \langle Ax, y\rangle + \langle A^*x, y\rangle =
+        \langle Ax + A^*x, y\rangle = \\ = \langle (A + A^*)x, y\rangle = \langle 0x, y\rangle
+    \end{multline*}
+    Zadnja enakost velja za vsaka \(x, y \in \R\), zato je \(A + A^* = 0\).
+
+    Za drugo točko moramo preveriti, da \(-1\) ni lastna vrednost za \(A\). Recimo, da je \(-1\) lastna vrednost in \(x \ne 0\) njen lastni vektor.
+    Potem velja \(0 = \langle Ax, x\rangle = \langle -x, x\rangle = -\langle x, x\rangle = 0\). Iz tega bi sledilo \(x = 0\), kar pa ni res. Torej \(-1\)
+    ni lastna vrednost in \(\det(A + I) = \det(A - (-1) I) \ne 0\). Sledi, da je \(A + I\) obrnljiva.
+
+\end{document}
