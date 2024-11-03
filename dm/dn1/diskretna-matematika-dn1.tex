@@ -1,0 +1,91 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[margin=3cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel}
+\usepackage{thmtools}
+\usepackage{lmodern}
+\usepackage[colorlinks=false]{hyperref}
+\usepackage{textcomp}
+\usepackage{enumitem}
+
+
+\title{Rešitve 1.\ domače naloge iz diskretne matematike}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{1.~naloga}
+    Koliko je štirimestnih števil, pri katerih je vsota števk sodo število?
+\subsection*{Rešitev}
+    Enostavno lahko pokažemo, da je takih števil polovica. Definiramo izomorfizem, kjer vsakemu štirimestnemu številu 
+    priredimo drugo štirimestno število, tako da spremenimo zadnjo števko. Zadnjo števko povečamo za \(1\) in 
+    vzamemo ostanek po modulu \(10\). Tako dobimo bijekcijo med števili, ki imajo sodo vsoto števk in tistimi, ki
+    imajo liho vsoto števk. Vseh štirimestnih števil je \(9000\), torej je število štirimestnih števil, ki imajo
+    sodo vsoto števk enako \(4500\).
+
+    Lahko bi se tega lotili tudi tako, da bi ločili števila glede na parnost prve števke in iskali načine, da ostale \(3\) števke 
+    dajo sodo ali pa liho vsoto.
+
+\section*{2.~naloga}
+Koliko je različnih besed dolžine \(3\), sestavljenih iz črk \(A\), \(B\), \(C\), \(D\), \(E\) in \(F\), če \begin{enumerate}[label = (\alph*)]
+    \item ponavljanje ni dovoljeno in besede vsebujejo vsaj eno od črk \(E\) in \(F\)?
+    \item ponavljanje je dovoljeno in besede vsebujejo vsaj eno od črk \(E\) in \(F\)?
+    \item ponavljanje ni dovoljeno in besede vsebujejo črko \(E\) in črko \(F\)?
+    \item ponavljanje je dovoljeno in besede vsebujejo črko \(E\) in črko \(F\)?
+\end{enumerate}
+\subsection*{Rešitev}
+\begin{enumerate}[label = (\alph*)]
+    \item Vseh besed brez ponovljenih črk je \(\binom{6}{3} \cdot 3! = 120\). Nobena od črk \(E\) in \(F\) se ne pojavi v \(\binom{4}{3} \cdot 3! = 24\) besedah. 
+        Skupno število besed z vsaj eno od teh dveh črk je torej \(120 - 24 = 96\).
+    \item Vseh besed z ponovljenimi črkami je \(6^3 = 216\). Besed brez črk \(E\) in \(F\) je \(4^3 = 64\).
+        Skupno število besed z vsaj eno od teh dveh črk je torej \(216 - 64 = 152\).
+    \item V tem primeru imamo \(2\) možnosti za izbiro, v kakšnem vrstnem redu se pojavita \(E\) in \(F\) ter \(3\) možnosti, kje je tretja črka. Za tretjo črko imamo \(4\)
+        možnosti. Skupaj je to \(2 \cdot 3 \cdot 4 = 24\) možnosti.
+    \item Če se pojavita \(E\) in \(F\), lahko ločimo dve možnosti.
+        Lahko se obe pojavita enkrat, lahko pa ena dvakrat. Če se obe enkrat, imamo \(2\) možnosti za njun vrstni red, \(4\) možnosti za izbiro tretje črke in \(3\) možnosti za 
+        njen položaj v besedi. S tem dobimo \(2 \cdot 4 \cdot 3 = 24\) možnosti. Če se ena črka pojavi dvakrat, imamo \(2\) možnosti za izbiro katera črke se pojavi dvakrat
+        in \(3\) možnosti za vrstni red teh črk. Zadnja možnost nam da \(2 \cdot 3 = 6\) načinov, skupaj za prvi primer je to \(24 + 6 = 30\) besed.
+\end{enumerate}
+
+\section*{3.~naloga}
+    Naj bo
+    \[A = \left\{\left(i, j\right); i, j \in \mathbb{N}, 20 \le i, j \le 40\right\} \text{in \ } B = \left\{(i, j) \in A; i + j \text{je sodo število}\right\}.\]
+    Koliko elementov ima množica \(B\)?
+\subsection*{Rešitev}
+    Števili \(i\) in \(j\) morata biti ali obe sodi ali pa obe lihi. Lihih izbir imamo \(10\) in sodih \(11\). Skupaj je to \(10 \cdot 10 + 11 \cdot 11 = 221\).
+
+\section*{4.~naloga}
+Naj bo A množica z \(n\) elementi. \begin{enumerate}[label = (\alph*)]
+    \item Koliko je vseh binarnih relacij na množici \(A\)?
+    \item Koliko je vseh refleksivnih relacij na množici \(A\)?
+    \item Koliko je vseh simetričnih relacij na množici \(A\)?
+    \item Koliko je vseh refleksivnih in hkrati simetričnih relacij na množici \(A\)?
+\end{enumerate}
+\subsection*{Rešitev}
+    \begin{enumerate}[label = (\alph*)]
+        \item Binarna relacija je podmnožica \(A \times A\), torej ima \(2^{n^2}\) možnosti.
+        \item Refleksivna relacija je podmnožica \(A \times A\), ki vsebuje diagonalno relacijo. Ta ima \(n\) elementov, torej je možnosti za izbiro preostalih elementov \(2^{n^2 - n}\).
+        \item Simetrične relacije so v bijekciji z zgornje trikotnimi \(n \times n\) matrikami nad poljem \(\{0, 1\}\). (Vrednosti nad diagonalo določijo vrednosti pod diagonalo.) 
+            Torej je možnosti \(2^{\frac{n(n + 1)}{2}}\).
+        \item Glede na prejšnji primer izgubimo prostost diagonale, torej je možnosti \(2^{\frac{n(n - 1)}{2}}\).
+    \end{enumerate}
+
+\section*{5.~naloga}
+    Ob železniški progi je \(k\) postaj. Koliko različnih vozovnic je treba pripraviti, da jih bodo
+    imeli na razpolago za vse relacije (v obe smeri)? Kaj pa, če se mora vsak potnik peljati vsaj
+    dve postaji?
+\subsection*{Rešitev}
+    Vsak urejen par različnih postaj je veljavna relacijo v neko smer in vsaka relacija je enolično določena z urejenim parom postaj. Torej potrebujemo
+    \(k\left(k - 1\right)\) vozovnic. 
+    
+    Lahko gledamo, na koliko postajah lahko potnik izstopi, če začne na neki postaji. Potnik, ki je vstopil na 1.~postaji, lahko izstopi na \(k - 2\) postajah, na 2.~postaji na \(k - 3\) postajah, \ldots,
+    na \(\left(k - 2\right)\)-ti postaji pa na \(1\) postaji. Za obe smeri skupaj je to 
+    \[2 \cdot \left(\left(k - 2\right) + \left(k - 3\right) + \ldots + 1\right) = 2 \cdot \frac{\left(k - 1\right)\left(k - 2\right)}{2} = \left(k - 1\right)\left(k - 2\right)\] 
+    vozovnic.
+\end{document}

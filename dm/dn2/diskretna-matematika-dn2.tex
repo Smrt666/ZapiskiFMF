@@ -1,0 +1,114 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[margin=3cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel}
+\usepackage{thmtools}
+\usepackage{lmodern}
+\usepackage[colorlinks=false]{hyperref}
+\usepackage{textcomp}
+\usepackage{enumitem}
+
+
+\title{Rešitve 2.\ domače naloge iz diskretne matematike}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{1.~naloga}
+Na koncertu bo nastopilo \(n \ge 2\), pevcev in \(m\) pevk, vsak bo odpel po eno točko sporeda.
+Na koliko načinov lahko sestavimo spored, če mora koncert začeti in končati pevec?
+\subsection*{Rešitev}
+    Najprej izberemo prvega in zadnjega pevca, kar lahko storimo na \(n \cdot (n - 1)\) načinov. 
+    Vmes razporedimo preostale pevce in pevke, kar lahko storimo na \((n - 2 + m)!\) načinov.
+    Skupno število možnosti je torej \(n \cdot (n - 1) \cdot (n + m - 2)!\).
+
+\section*{2.~naloga}
+Pajek ima za vsako od svojih osmih nog svojo nogavico in čevelj (vsaka nogavica in vsak
+čevelj paše na točno eno nogo). Koliko je različnih vrstnih redov, na katere se pajek lahko
+obuje, če mora na vsako nogo najprej obuti nogavico in potem čevelj?
+\subsection*{Rešitev}
+    Recimo, da imamo \(n\) načinov, kako se lahko pajek obuje. Če bi na kateri nogi zamenjal
+    vrstni red nogavice in čevlja, bi bil ta neveljaven. Torej imamo za vsak dober vrstni red obuvanja
+    \(2^8 - 1\) neveljavnih. Hitro lahko vidimo, da je vsak vrstni red dober, ali pa ravnokar opisane oblike.
+    Skupno število veljavnih in neveljavnih vrstnih redov je torej \(2^8 \cdot n\), 
+    kar je enako številu vseh vrstnih redov \(\left(2 \cdot 8\right)!\). Ti števili sta enaki, torej je \(n = \frac{\left(2 \cdot 8\right)!}{2^8}\).
+
+\section*{3.~naloga}
+Na koliko načinov lahko postavimo k trdnjav na šahovnico dimenzije \(m \times n\) tako, da se
+paroma ne napadajo?
+\subsection*{Rešitev}
+    Enostaven primer je, če je \(n = m = k\). V tem primeru vidimo, da je v vsaki vrstici ena trdnjava.
+    V prvi vrstici imamo \(k\) možnosti. S postavitvijo prve trdnjave izgubimo en stolpec, eno vrstico in eno trdnjavo.
+    Imamo enake pogoje kot prej, torej imamo \(k - 1\) možnosti za postavitev druge trdnjave. Očitno je, da je število možnosti
+    za ta primer enako \(k!\).
+
+    V splošnem bomo morali izbrati \(k\) vrstic in \(k\) stolpcev, kamor bomo postavili trdnjave.
+    To lahko storimo na \(\binom{m}{k} \cdot \binom{n}{k}\) načinov. Ko so ti izbrani, dobimo prvi primer, ki smo ga rešili.
+    Skupno število možnosti je torej 
+    \[\sum_{k = 0}^{\min\{m, n\}} \binom{m}{k} \cdot \binom{n}{k} \cdot k!.\]
+
+\section*{4.~naloga}
+Deset turistov in deset turistk si želi ogledati Blejski otok. Na koliko načinov si ga lahko
+ogledajo s \(5\) enakimi čolni, če morata v vsakem čolnu sedeti po dva moška in po dve ženski?
+
+\subsection*{Rešitev}
+    Iščemo število parov, ki jih lahko dobimo iz parov turistov in turistk.
+    Če imamo poparčkane turiste, lahko damo te pare v vrsto na \(5!\) načinov in jih zamenjamo znotraj parov na \(2^5\) načinov. 
+    Tako dobimo vse možne permutacije turistov, ki jih je \(10!\). Sledi, da je parov turistov in turistk \(\frac{10!}{5!2^5}\). 
+
+    Ko imamo enkrat pare turistov in turistk, naredimo pare iz njih. Petim parom turistov pripišemo
+    po en par turistk, kar lahko storimo na \(5!\) načinov. Skupno število možnosti je torej 
+    \[{\left(\frac{10!}{5! \cdot 2^5}\right)}^2 \cdot 5!.\]
+
+\section*{5.~naloga}
+K brivcu vkoraka nogometno moštvo (\(11\) mož), v čakalnici pa je ravno \(11\) stolov. Na koliko
+načinov se lahko posedejo, če Andrej, Bojan in Cene ne želijo sedeti skupaj? Kaj pa, če želi
+Bojan sedeti med Andrejem in Cenetom (ne sedijo nujno skupaj)?
+\subsection*{Rešitev}
+    V prvem primeru bodo glede na drug drugega sedeli Andrej, Bojan in Cene na enega od \(3!\) načinov.
+    Na dveh mestih med njimi je po še vsaj en stol. Preostalih \(6\) mest lahko vrinemo kamorkoli na začetek, konec, 
+    ali pa med dva izmed njih. To vrivanje lahko storimo na število šibkih kompozicij števila \(6\) na \(4\) dele,
+    kar je \(\binom{6 + 4 - 1}{4 - 1} = \binom{9}{3}\). Na vsa ta mesta razporedimo še ostalih \(8\) ljudi. Končen odgovor je torej
+    \[3! \cdot \binom{9}{3} \cdot 8!.\]
+
+    V drugem primeru bomo najprej postavili Bojana med Andreja in Ceneta. To lahko storimo na \(2\) načina.
+    Zanje moramo izbrati \(3\) sedeže, kar lahko storimo na \(\binom{9}{3}\) načinov. Preostalih \(8\) ljudi razporedimo na preostalih \(8\) mest.
+    Skupno število možnosti je torej
+    \[2! \cdot \binom{9}{3} \cdot 8!.\]
+
+\section*{6.~naloga}
+Na piknik je prišlo \(5\) matematikov, \(7\) fizikov in \(3\) kemiki. Na koliko načinov se lahko postavijo
+v vrsto za pleskavice, če so vsi matematiki pred vsemi fiziki?
+
+\subsection*{Rešitev}
+    Matematike lahko postavimo v vrsto na \(5!\) načinov, fizike na \(7!\) načinov in kemike na \(3!\) načinov. 
+    Matematiki so pred fiziki, na poljubna mesta pa vrinemo \(3\) kemike.
+    To lahko storimo na \(\binom{3 + \left(5 + 7 + 1\right) - 1}{\left(5 + 7 + 1\right) - 1} = \binom{15}{12}\) načinov. Skupno število možnosti je torej
+    \[5! \cdot 7! \cdot 3! \cdot \binom{15}{12}.\]
+
+\section*{7.~naloga}
+Na koliko načinov lahko postavimo v vrsto \(5\) rdečih, \(7\) modrih in \(3\) zelene kroglice, če mora
+biti vsaka rdeča kroglica pred vsemi modrimi kroglicami?
+Pripomba: med kroglicami iste barve ne ločimo.
+
+\subsection*{Rešitev}
+    Naloga je podobna prejšnji, le da nas ne zanimajo razporeditve znotraj skupin.
+    Odgovor je kar \(\binom{15}{12}\).
+
+\section*{8.~naloga}
+Profesor je predaval \(n\) let. Vsako leto je povedal na predavanjih \(k\) anekdot. Vsaj koliko
+anekdot je moral poznati, če v dveh različnih letih ni povedal istih \(k\) anekdot? Rešite nalogo
+še za primer \(n = 10\) in \(k = 4\).
+
+\subsection*{Rešitev}
+    Naj bo \(A\) množica vseh anekdot, ki jih je profesor povedal. Naj bo \(B\) množica vseh možnih \(k\)-tih podmnožic množice \(A\).
+    Poiskati moramo najmanjši \(|A|\), da bo \(|B| \ge n\). To je ekvivalentno iskanju najmanjšega \(|A| = x\), da bo \(\binom{x}{k} \ge n\).
+    
+    Za \(n = 10\) in \(k = 4\) dobimo, da je \(x = 6\), saj je \(\binom{6}{4} = 15 \ge 10\) in \(\binom{5}{4} = 5 < 10\).
+\end{document}
