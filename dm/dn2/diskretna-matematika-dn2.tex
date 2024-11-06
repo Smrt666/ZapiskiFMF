@@ -51,7 +51,7 @@ paroma ne napadajo?
     V splošnem bomo morali izbrati \(k\) vrstic in \(k\) stolpcev, kamor bomo postavili trdnjave.
     To lahko storimo na \(\binom{m}{k} \cdot \binom{n}{k}\) načinov. Ko so ti izbrani, dobimo prvi primer, ki smo ga rešili.
     Skupno število možnosti je torej 
-    \[\sum_{k = 0}^{\min\{m, n\}} \binom{m}{k} \cdot \binom{n}{k} \cdot k!.\]
+    \[\binom{m}{k} \cdot \binom{n}{k} \cdot k!.\]
 
 \section*{4.~naloga}
 Deset turistov in deset turistk si želi ogledati Blejski otok. Na koliko načinov si ga lahko
@@ -78,9 +78,9 @@ Bojan sedeti med Andrejem in Cenetom (ne sedijo nujno skupaj)?
     \[3! \cdot \binom{9}{3} \cdot 8!.\]
 
     V drugem primeru bomo najprej postavili Bojana med Andreja in Ceneta. To lahko storimo na \(2\) načina.
-    Zanje moramo izbrati \(3\) sedeže, kar lahko storimo na \(\binom{9}{3}\) načinov. Preostalih \(8\) ljudi razporedimo na preostalih \(8\) mest.
+    Zanje moramo izbrati \(3\) sedeže, kar lahko storimo na \(\binom{11}{3}\) načinov. Preostalih \(8\) ljudi razporedimo na preostalih \(8\) mest.
     Skupno število možnosti je torej
-    \[2! \cdot \binom{9}{3} \cdot 8!.\]
+    \[2 \cdot \binom{11}{3} \cdot 8!.\]
 
 \section*{6.~naloga}
 Na piknik je prišlo \(5\) matematikov, \(7\) fizikov in \(3\) kemiki. Na koliko načinov se lahko postavijo
