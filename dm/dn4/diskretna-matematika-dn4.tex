@@ -1,0 +1,148 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[margin=3cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel}
+\usepackage{thmtools}
+\usepackage{lmodern}
+\usepackage[colorlinks=false]{hyperref}
+\usepackage{textcomp}
+\usepackage{enumitem}
+
+
+\title{Rešitve 4.\ domače naloge iz diskretne matematike}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{1.~naloga}
+Pokažite spodnje enakosti s pomočjo kombinatoričnih dokazov.
+\begin{enumerate}[label=(\alph*)]
+    \item
+    \(
+        \binom{2n}{2} = 2\binom{n}{2} + n^2,
+    \)
+    \item
+    \(
+        k\binom{n}{k} = n\binom{n-1}{k-1}.
+    \)
+\end{enumerate}
+
+\subsection*{Rešitev}
+\begin{enumerate}[label=(\alph*)]
+    \item Leva stran je enaka številu izbir dveh elementov iz \([n] + [n]\). To je enako, če izberemo dva elementa
+        iz prve vsotne ali pa dva iz druge vsotne množice, za vsako lahko to storimo na \(\binom{n}{2}\) načinov.
+        Druga možnost je, da izberemo iz vsake vsotne množice po eno, za kar imamo \(n^2\) načinov.
+    \item Štejemo pare, kjer je prvi člen \(k\)-ta podmnožica v \([n]\), drugi člen pa nek element iz nje. 
+        Take pare lahko dobimo tudi, če izberemo najprej drugi element, za prvega pa vzamemo \(\left(k-1\right)\)-podmnožico
+        ostalih elementov in ji dodamo vnaprej izbranega.
+\end{enumerate}
+
+\section*{2.~naloga}
+Pokažite, da velja (dokaz z indukcijo in kombinatoričen dokaz):
+\begin{enumerate}[label=(\alph*)]
+    \item \(S(n, 2) = 2^{n - 1} - 1\) \quad za \quad \(n \ge 1\),
+    \item \(S(n, n-1) = \binom{n}{2}\) \quad za \quad \(n \ge 1\).
+\end{enumerate}
+
+\subsection*{Rešitev}
+\begin{enumerate}[label=(\alph*)]
+    \item Pri kombinatoričnem dokazu iščemo razdelitve \(n\)-množice na \(2\) neprazna dela.
+        Lahko gledamo neurejene pare podmnožic in njihovih komplementov. Opazimo, da jih je ravno pol toliko,
+        kot podmnožic \([n]\). Izvzeti moramo še par prazne in cele množice in to je želen rezultat.
+
+        Baza indukcije je za \(n=1\) \(S\left(1, 2\right) = 0 = 2 ^ {1 - 1} - 1\). Predpostavimo formulo za \(n\) in dobimo
+        \[S\left(n + 1, 2\right) = S(n, 1) + 2 S\left(n, 2\right) = 1 + 2 \left(2 ^ {n - 1} - 1\right) = 2 ^ {n} - 1\]
+    \item Ko \(n\)-množico delimo na \(n-1\) nepraznih delov, se pravzaprav sprašujemo, katera dva elementa bosta skupaj,
+        saj bodo ostali sami.
+
+        Za \(n=1\) enakost drži. Predpostavimo za \(n\).
+        \[S\left(n + 1, n\right) = S\left(n, n - 1\right) + n S\left(n, n\right) = 
+        \binom{n}{2} + n = \frac{n\left(n - 1\right) + 2n}{2} = \binom{n + 1}{2}.\]
+\end{enumerate}
+
+\section*{3.~naloga}
+Pokažite naslednjo enakost za Stirlingovimi števili 2.~vrste (kombinatoričen dokaz in dokaz
+dokaz z indukcijo):
+\[
+    x^n = \sum_{k=0}^{n}S\left(n, k\right) x ^ {\underline{k}} \text{\quad za \quad} n \ge 0.
+\]
+
+\subsection*{Rešitev}
+Gledamo funkcije iz \({[x]}^{[n]}\). Po eni strani jih je \(x^n\), po drugi strani pa lahko razdelimo
+\([x]\) na razrede, kjer se v isto vrednost slikajo natanko tisti elementi, ki so v istem razredu.
+Za vsako tako razdelitev na \(k\) razredov lahko dobimo \(x^{\underline{k}}\) funkcij --- za vsak razred izberemo nek element, ki se pri
+tem ne smejo ponavljati. Število takih razdelitev je \(S\left(n, k\right)\) ko seštejemo za vse \(k\) dobimo
+formulo. Sledi, da formula velja za \(x \in \mathbb{N}\). Ker imamo na levi in na desni strani polinoma v \(x\) stopnje \(n\)
+in se ujemata v neskončno točkah, sta enaka.
+
+Za \(n = 0\) formula deluje (tako pri \(x=0\) kot pri \(x \ne 0\)). Predpostavimo, da velja za \(n\).
+\begin{align*}
+    \begin{array}{l}
+   \sum_{k=0}^{n+1} S( n+1,k) x^{\underline{k}}\\
+   \end{array} & =\sum _{k=1}^{n}( S( n,k-1) \ +\ kS( n,k)) x^{\underline{k}} +S( n+1,0) +S( n+1,n+1) x^{\underline{n+1}}\\
+    & =\sum_{k=0}^{n-1} S( n,k)\left(kx^{\underline{k}} +x^{\underline{k+1}}\right) +S( n,n) nx^{\underline{n}} +x^{\underline{n+1}}\\
+    & =\sum_{k=0}^{n-1} S( n,k) x^{\underline{k}}( k+x-k) +x^{\underline{n}}( x-n+n)\\
+    & =x\sum_{k=0}^{n-1} S( n,k) x^{\underline{k}} +x\cdot x^{\underline{n}} S( n,n)\\
+    & =x\sum_{k=0}^{n} S( n,k) x^{\underline{k}} \\
+    & = x^{n+1}
+\end{align*}
+
+\section*{4.~naloga}
+Pridruženo Stirlingovo število reda \(r\), \(Sr(n, k)\), je število razdelitev \([n]\) na \(k\) blokov, pri čemer
+vsak blok vsebuje vsaj \(r\) elementov. Privzamemo, da velja \(n, k, r \ge 1\).
+\begin{enumerate}[label=(\alph*)]
+    \item Določite \(S_r\left(n, 1\right)\) za \(n \ge 1\). Za katere \(k\) je \(S_r\left(n, k\right) = 0\) (v odvisnosti os \(r\), \(n\))?
+    \item Poiščite rekurzivno zvezo, ki ji zadoščajo števila \(S_r\left(n, k\right)\) za \(n, k \ge 2\) (kombinatoričen dokaz).
+    \item S pomočjo rekurzivne zveze izračunajte \(S_3\left(10, 3\right)\).
+\end{enumerate}
+
+\subsection*{Rešitev}
+\begin{enumerate}[label=(\alph*)]
+    \item En blok z vsaj \(r\) elementi lahko naredimo na enega ali pa \(0\) načinov. 
+    \[S_r\left(n, 1\right) = \begin{cases}
+        1, & n \ge r, \\
+        0, & \text{sicer}
+    \end{cases}.\]
+    Hitro lahko ugotovimo, da je \(S_r\left(n, k\right) = 0 \Leftrightarrow r\cdot k \le n\).
+    \item Opazujemo element \(n\). Lahko ga vzamemo v blok z \(r\) elementi, ali pa naredimo bloke iz
+        ostalih in ga dodamo v enega izmed njih. To nam da rekurzivno zvezo
+        \[S_r\left(n, k\right) = \binom{n - 1}{r - 1} S_r\left(n - r, k - 1\right) + k S_r\left(n - 1, k\right).\]
+        Pri tem se zavedamo, kdaj je \(S_r\left(n, k\right) = 0\).
+    \item \[S_3\left(10, 3\right) = \binom{9}{2} S_3\left(7, 2\right) + 3 S_3\left(9, 3\right) = \ldots = 2100 \]
+    \begin{table}[!h]
+        \centering
+        \begin{tabular}{|p{0.1\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|}
+            \hline 
+            $\displaystyle n$\textbackslash$\displaystyle k$ & $\displaystyle 1$ & $\displaystyle 2$ & $\displaystyle 3$ \\
+            \hline 
+            $\displaystyle 1$ & $\displaystyle 0$ & $\displaystyle 0$ & $\displaystyle 0$ \\
+            \hline 
+            $\displaystyle 2$ & $\displaystyle 0$ & $\displaystyle 0$ & $\displaystyle 0$ \\
+            \hline 
+            $\displaystyle 3$ & $\displaystyle 1$ & $\displaystyle 0$ & $\displaystyle 0$ \\
+            \hline 
+            $\displaystyle 4$ & $\displaystyle 1$ & $\displaystyle 0$ & $\displaystyle 0$ \\
+            \hline 
+            $\displaystyle 5$ & $\displaystyle 1$ & $\displaystyle 0$ & $\displaystyle 0$ \\
+            \hline 
+            $\displaystyle 6$ & $\displaystyle 1$ & $\displaystyle 10$ & $\displaystyle 0$ \\
+            \hline 
+            $\displaystyle 7$ & $\displaystyle 1$ & $\displaystyle 35$ & $\displaystyle 0$ \\
+            \hline 
+            $\displaystyle 8$ & $\displaystyle 1$ & $\displaystyle 91$ & $\displaystyle 0$ \\
+            \hline 
+            $\displaystyle 9$ & $\displaystyle 1$ & $\displaystyle 210$ & $\displaystyle 280$ \\
+            \hline 
+            $\displaystyle 10$ & $\displaystyle 1$ & $\displaystyle 456$ & $\displaystyle 2100$ \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{enumerate}
+
+\end{document}
