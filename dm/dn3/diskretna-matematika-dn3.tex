@@ -1,0 +1,173 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[margin=3cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel}
+\usepackage{thmtools}
+\usepackage{lmodern}
+\usepackage[colorlinks=false]{hyperref}
+\usepackage{textcomp}
+\usepackage{enumitem}
+
+
+\title{Rešitve 3.\ domače naloge iz diskretne matematike}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{1.~naloga}
+S pomočjo Ferrersovih diagramov pokažite, da je število sebi konjugiranih razčlenitev velikosti \(n\) enako številu razčlenitev velikosti \(n\) 
+s samimi različnimi lihimi sumandi. Razčlenitev
+je sebi konjugirana, če je enaka svoji konjugirani razčlenitvi.
+
+\subsection*{Rešitev}
+Iščemo bijekcijo med Ferrersovimi diagrami, ki so simetrični čez diagonalo in diagrami, ki imajo same različne lihe vrstice.
+Najprej gledamo sebi konjugirane diagrame.
+Hitro lahko opazimo, da je prvi stolpec največji in enako dolg kot prva vrstica. Če odstranimo prvo vrstico in prvi stolpec, 
+dobimo nov Ferrersov diagram, ki je sebi konjugiran. Skupaj smo odstranili liho elementov. Če postopek ponavljamo na preostanku,
+dobimo same lihe skupine. Odvzet stolpec je bil največji (ostali so krajši ali enako dolgi). Ko smo odvzeli še prvo vrstico,
+smo skrajšali vse preostale stolpce. Zato dobimo različne lihe skupine. Te odvzete skupine lahko po vrsticah zložimo v nov diagram,
+ki ustreza razčlenitvi z lihimi različnimi sumandi. Očitno je ta preslikava injektivna.
+
+V drugo smer moramo premisliti, da je vsak diagram z lihimi različnimi sumandi lahko zgrajen na tak način.
+Vzamemo prvo (največjo) vrstico in jo uporabimo za prvo vrstico in prvi stolpec. To lahko na natanko en način storimo tako,
+da je diagram simetričen čez diagonalo. Postopek nadaljujemo z ostalimi vrsticami. Ker so vse vrstice lihe, bomo vedno dobili
+simetričen diagram. Ker so vrstice vedno krajše za vsaj 2, bomo vedno dobili veljaven diagram. Preslikava je torej bijekcija.
+
+\section*{2.~naloga}
+Poiščite vse razčlenitve velikosti \(20\) s samimi različnimi lihimi sumandi. S pomočjo tega
+poiščite še vse sebi konjugirane razčlenitve velikosti \(20\).
+
+\subsection*{Rešitev}
+Pri fiksnem največjem seštevancu se sprašujemo, kako lahko z manjšimi seštevanci vsoto dopolnimo do 20. Pri tem 
+si lahko prihranimo nekaj dela, če ugotovimo, da seštevancev ne more biti liho.
+\begin{align*}
+    19 + 1 & \sim 10 + 2 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 \\
+    17 + 3 & \sim 9 + 3 + 2 + 1 + 1 + 1 + 1 + 1 + 1 \\
+    15 + 5 & \sim 8 + 4 + 2 + 2 + 1 + 1 + 1 + 1 \\
+    13 + 7 & \sim 7 + 5 + 2 + 2 + 2 + 1 + 1 \\
+    11 + 9 & \sim 6 + 6 + 2 + 2 + 2 + 2 \\
+    11 + 5 + 3 + 1 & \sim 6 + 4 + 4 + 4 + 1 + 1 \\
+    9 + 7 + 3 + 1 & \sim 5 + 5 + 4 + 4 + 2 \\
+\end{align*}
+
+\section*{3.~naloga}
+S pomočjo Ferrersovih diagramov pokažite, da je število razčlenitev velikosti \(n\) z največ
+\(m\) členi enako številu razčlenitev velikosti \(n + m(m + 1)/2\) z \(m\) različnimi členi. Bijekcijo
+med Ferrersovimi diagrami ilustrirajte tudi na enem konkretnem primeru za \(n = 8\) in
+\(m = 5\).
+
+\subsection*{Rešitev}
+Najprej naredimo injekcijo iz razčlenitev \(n\) z največ \(m\) členi v razčlenitve \(n + m(m + 1)/2\) z \(m\) različnimi členi.
+Prvo vrstico podaljšamo za \(m\), drugo za \(m - 1\), \ldots, zadnjo za \(1\). Možne prazne vrstice na koncu prav tako podaljšujemo, skupaj jih mora biti \(m\).
+Tako dobimo diagram, ki ima \(m\) različno dolgih vrstic. Očitno je ta preslikava injektivna.
+
+Za preslikavo v drugo smer vzamemo diagram z \(m\) različno dolgimi vrsticami. Iz prve vrstice odstranimo \(m\) elementov, iz druge \(m - 1\), \ldots, iz zadnje \(1\).
+Dobimo diagram z največ \(m\) vrsticami. Torej je bila začetna preslikava surjektivna in posledično je bijektivna.
+
+\section*{4.~naloga}
+Seštejte vrsti \begin{enumerate}[label=(\alph*)]
+    \item \(\sum_{k=0}^{n}\binom{2n}{2k}\),
+    \item \(\sum_{k=0}^{n}k\binom{n}{k}\).
+\end{enumerate}
+
+\subsection*{Rešitev}
+\begin{enumerate}[label=(\alph*)]
+    \item Je več načinov, kako rešiti to nalogo. Lahko opazimo, da vsak člen \(\binom{2n}{2k}\) predstavlja število
+        podmnožic množice z \(2n\) elementi, ki imajo \(2k\) elementov. Torej iščemo število podmnožic sode moči, kar je točno polovica vseh podmnožic.
+        
+        Še ena možnost je, da uporabimo \(0 = {\left(1 - 1\right)}^{2n} = \sum_{k=0}^{2n}\binom{2n}{k}{\left(-1\right)}^k\). Iskana vsota so ravno
+        vsi pozitivni členi. Ker je njihova vsota nasprotno enaka vsoti negativnih, je njihova vsota torej polovica vsote
+        \({\left(1 + 1\right)}^{2n} = \sum_{k=0}^{2n}\binom{2n}{k}\). Rezultat je \(2^{2n-1}\)
+    \item En način je odvajanje funkcije \(f(x) = {(1 + x)}^n\). \(f'(x) = n{(1 + x)}^{n-1}\). Vstavimo \(x = 1\), da dobimo
+        iskano vsoto. Rezultat je \(n \cdot 2^{n-1}\). 
+        
+        Drug način je \(\sum_{k=0}^{n} k\binom{n}{k} = \sum_{k=0}^{n} \left(n\binom{n}{k} - \left(n - k\right)\binom{n}{k}\right)
+        = n \sum_{k=0}^{n} \binom{n}{k} - \sum_{k=0}^{n} \left(n - k\right)\binom{n}{k}\). To lahko poenostavimo v enačbo:
+        \[\sum_{k=0}^{n} k\binom{n}{k} = n 2 ^ n - \sum_{k=0}^{n} k\binom{n}{k}\]
+        in dobimo enak rezultat. 
+\end{enumerate}
+
+\section*{5.~naloga}
+V razvoju multinoma \({\left(3a - 4b + 2c\right)}^7\) poiščite koeficient pred členom \(a^3bc^3\).
+
+\subsection*{Rešitev}
+V razpisu potence \(3\)-krat izberemo člen \(3a\), \(1\)-krat člen \(-4b\) in \(3\)-krat člen \(2c\). To lahko naredimo na \(\binom{7}{3,1,3}\) načinov.
+\[\binom{7}{3,1,3} \cdot 3^3a^3 \cdot (-4)b \cdot 2^3c^3 = -2^7 \cdot 3^3 \cdot 5 \cdot 7\]
+
+\section*{6.~naloga}
+Naj bosta \(k\) in \(n\) naravni števili. Mesto sestavlja pravokotna mreža cest; \(k\) cest poteka v
+smeri sever-jug, \(n\) cest pa v smeri vzhod-zahod. Študent stanuje na skrajno jugozahodnem
+koncu mesta, fakulteta pa je na skrajno severovzhodnem delu mesta.
+\begin{enumerate}[label=(\alph*)]
+    \item Na koliko načinov lahko študent pride od doma do fakultete po najkrajši poti (torej
+    če vedno hodi le proti severu ali proti vzhodu)?
+    \item Kaj pa, če mora po vsaki cesti v smeri sever-jug prehoditi vsaj del poti (ceste ne
+    sme samo prečkati)?
+\end{enumerate}
+Vsako od nalog najprej rešite v splošnem, potem pa še izračunajte za primer \(n = 11\) in
+\(k = 6\).
+
+\subsection*{Rešitev}
+\begin{enumerate}[label=(\alph*)]
+    \item Študent se bo \(n-1\)-krat premaknil proti severu in \(k-1\)-krat proti vzhodu. To lahko naredi na \(\binom{n+k-2}{n-1}\) načinov.
+    \item Proti severu se bo premaknil \(n-1\)-krat, to bo opravil v \(k\) delih. Iščemo torej kompozicije števila \(n-1\) na \(k\) delov.
+        To lahko naredi na \(\binom{n-2}{k-1}\) načinov.
+\end{enumerate}
+Za primer \(n = 11\) in \(k = 6\) dobimo: \(\binom{11 + 6 - 2}{11 - 1} = 3003\) in \(\binom{11 - 2}{6 - 1} = 126\).
+
+\section*{7.~naloga}
+Na koliko načinov lahko razdelimo razdelimo \(11\) različnih kroglic v enake škatle tako, da
+je v dveh škatlah po ena kroglica, v treh škatlah po dve kroglice in v eni škatli tri kroglice?
+
+\subsection*{Rešitev}
+Izbrati moramo po eno kroglico za prvi dve škatli, \dots To lahko storimo na \(\binom{11}{1, 1, 2, 2, 2, 3}\) načinov.
+
+\section*{8.~naloga}
+Na koliko načinov lahko razdelimo razdelimo \(n\) različnih kroglic v enake škatle tako, da
+je v \(k_i\) škatlah natanko \(i\) kroglic za \(n = 1, 2, \ldots, n\)? Pri tem je \(\sum_{i=1}^{n}i \cdot k_i = n\).
+Zgled: pri prejšnji nalogi je \(n_1 = 2\), \(n_2 = 3\) in \(n_3 = 1\).
+
+\subsection*{Rešitev}
+Izberemo \(k_1\) škatel, v katere bomo dali po eno kroglico, \(k_2\) škatel, v katere bomo dali po dve kroglici, \dots
+To lahko storimo na \(\frac{n!}{{\left(1!\right)}^{k_1} {\left(2!\right)}^{k_2} \cdots {\left(n!\right)}^{k_n}}\) načinov.
+
+\section*{9.~naloga}
+Koliko je permutacij nad množico z \(n\) elementi, ki imajo \(k_i\) disjunktnih ciklov dolžine \(i\)
+za \(i = 1, 2, \ldots, n\)? Pri tem je \(\sum_{i=1}^{n}i \cdot k_i = n\).
+
+\subsection*{Rešitev}
+Izberemo \(k_1\) elementov za prvi cikel, \(k_2\) elementov za drugi cikel, \dots
+Vsaka od teh izbranih skupin lahko predstavlja \(\left(i - 1\right)!\) različnih ciklov, kjer je \(i\) dolžina cikla. 
+Torej je rešitev naloge:
+\[\frac{n!}{{\left(1!\right)}^{k_1} {\left(2!\right)}^{k_2} \cdots {\left(n!\right)}^{k_n}} 
+{\left(\left(1 - 1\right)!\right)}^{k_1} {\left(\left(2 - 1\right)!\right)}^{k_2} \cdots {\left(\left(n - 1\right)!\right)}^{k_n}
+= \frac{n!}{1^{k_1} 2^{k_2} \cdots n^{k_n}}\]
+
+
+\section*{10.~naloga}
+Na koliko načinov lahko permutiramo črke \(O\), \(B\), \(Z\), \(O\), \(R\), \(I\), \(L\), \(U\), \(N\), \(A\), \(S\), \(I\), \(J\), \(E\)
+\begin{enumerate}[label=(\alph*)]
+    \item brez dodatnih omejitev?
+    \item tako, da je \(A\) vedno pred \(Z\)?
+    \item tako, da ni dveh zaporednih \(O\)-jev?
+    \item tako, da soglasniki nastopajo po abecednem vrstnem redu?
+\end{enumerate}
+
+\subsection*{Rešitev}
+\begin{enumerate}[label=(\alph*)]
+    \item Rešitev je \(\frac{14!}{2!2!}\) (\(O\) in \(I\) se ponovita).
+    \item Glede na prejšnji primer je ravno pol možnosti: \(\frac{14!}{2!2!2}\).
+    \item Izračunamo število vseh permutacij z dvema zaporednima \(O\)-jema in ga odštejemo od števila vseh permutacij. Rešitev je
+        \(\frac{14!}{2!2!} - \frac{13!}{2!}\).
+    \item Postavimo \(B\), \(Z\), \(R\), \(L\), \(N\), \(S\) in \(J\), nato pa na ostalih 8 mest vrinemo preostalih 7 črk. 
+    Pri tem pazimo, da lahko oba \(O\)-ja in \(I\)-ja zamenjamo in se vrstni red ne spremeni. Rešitev je
+        \[\binom{8 + 7 - 1}{7 - 1} \frac{7!}{2!2!}\]
+\end{enumerate}
+
+\end{document}
